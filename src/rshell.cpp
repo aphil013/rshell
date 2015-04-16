@@ -7,10 +7,17 @@
 
 int main(int argc, char** argv)
 {
+	char login[64]; 
+	int chk = getlogin_r(login, sizeof(login)-1); 
+	std::string name = login;
+	chk = gethostname(login, sizeof(login)-1);
+	std::string host = login;
+	name += "@";
+	std::string user = name + host;
 	std::string cmd_line;
 	while(1)
 	{
-		std::cout << "$ ";
+		std::cout << user  << "$ ";
 		std::cin >> cmd_line;
 		char* cmd = const_cast<char*>(cmd_line.c_str());
 		if(cmd_line == "exit")
