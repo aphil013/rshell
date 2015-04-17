@@ -1,33 +1,57 @@
 #include <iostream>
 #include <stdlib.h>
-#include <unistd.h>
+#include <unistd.h>				// Sys calls
 #include <stdio.h>
-#include <sys/wait.h>
-#include <errno.h>
+#include <sys/wait.h>			// Wait
+#include <errno.h>				// perror()
+#include <string.h>				// strtok
+#include <cstring>				// strcpy()
+#include <sstream>
+#include <vector>
 
-int main(int argc, char** argv)
+
+int main(int argc, char* argv[])
 {
 	char login[64]; 
-	int chk = getlogin_r(login, sizeof(login)-1); 
+	getlogin_r(login, sizeof(login)-1); 
 	std::string name = login;
-	chk = gethostname(login, sizeof(login)-1);
+	gethostname(login, sizeof(login)-1);
 	std::string host = login;
 	name += "@";
 	std::string user = name + host;
+
 	std::string cmd_line;
+	std::vector<char*> commands;
+	std::vector<int> flag;
 	while(1)
 	{
-		std::cout << user  << "$ ";
-		std::cin >> cmd_line;
-		char* cmd = const_cast<char*>(cmd_line.c_str());
-		if(cmd_line == "exit")
+		std::cout << user << "$ ";			// Prompt and input 
+		getline(std::cin, cmd_line);
+		
+		char*  cmd_str = new char [cmd_line.length()+1];	// Tokenizing
+		std::strcpy(cmd_str, cmd_line.c_str());
+
+		char* cmd = std::strtok(cmd_str, " ");
+		while(cmd != NULL)
 		{
-			return 0;
+			commands.push_back(cmd);
+			cmd = std::strtok(NULL, " ");
 		}
+		
+		int flagcnt = 0;							// Locating cmd flags
+		for(int i = 0; i < commands.size(); ++i)
+		{
+			if(commands.at(i)[0] == '-')
+			{
+				flag.push_back(i);
+				flagcnt++;
+			}
+		}
+		//for(int j = 0; j < commands.size() - flagcnt; ++j)
 		int pid = fork();
 		if(pid == 0)
 		{
-			execvp(cmd, argv);
+			execvp(commands.at(0), argv);		// Works for std cmds only
 		}
 		else
 		{
@@ -38,6 +62,9 @@ int main(int argc, char** argv)
 			}
 			wait(0);
 		}
+
+		while(commands.size() != 0)
+			commands.pop_back();
 	}	
 }
 
