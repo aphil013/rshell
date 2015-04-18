@@ -10,7 +10,7 @@
 #include <vector>
 
 
-int main(int argc, char* argv[])
+int main()
 {
 	char login[64]; 
 	getlogin_r(login, sizeof(login)-1); 
@@ -21,51 +21,52 @@ int main(int argc, char* argv[])
 	std::string user = name + host;
 
 	std::string cmd_line;
-	std::vector<char*> commands;
-	std::vector<int> flag;
+	int array_sz = 4096;
 	while(1)
 	{
+		char** commands = new char*[array_sz];
 		std::cout << user << "$ ";			// Prompt and input 
 		getline(std::cin, cmd_line);
 		
 		char*  cmd_str = new char [cmd_line.length()+1];	// Tokenizing
 		std::strcpy(cmd_str, cmd_line.c_str());
-
+		
+		int i = 0;
 		char* cmd = std::strtok(cmd_str, " ");
-		while(cmd != NULL)
-		{
-			commands.push_back(cmd);
+		while(cmd != NULL)					// Populate array of char
+		{							// pointers to cmds and flags
+			commands[i] = cmd;
 			cmd = std::strtok(NULL, " ");
+			++i;
 		}
 		
-		int flagcnt = 0;							// Locating cmd flags
-		for(int i = 0; i < commands.size(); ++i)
+		std::cout << commands[0] << std::endl;	
+		if(commands[0] == "exit")
 		{
-			if(commands.at(i)[0] == '-')
-			{
-				flag.push_back(i);
-				flagcnt++;
-			}
-		}
-		//for(int j = 0; j < commands.size() - flagcnt; ++j)
-		int pid = fork();
-		if(pid == 0)
-		{
-			execvp(commands.at(0), argv);		// Works for std cmds only
+			return 0;
 		}
 		else
 		{
-			if(pid == -1)
+			int pid = fork();
+			if(pid == 0)
 			{
-				perror("fork");
-				exit(1);
+				execvp(commands[0], commands);
 			}
-			wait(0);
+			else
+			{
+				if(pid == -1)
+				{
+					perror("fork");
+					exit(1);
+				}
+				wait(0);
+			}
 		}
-
-		while(commands.size() != 0)
-			commands.pop_back();
+		for(int d = 0; d < sizeof(commands); ++d)
+		{
+			commands[i] = '\0';
+		}
 	}	
 }
 
-
+// klu006
