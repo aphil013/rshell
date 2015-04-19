@@ -7,9 +7,14 @@ getlogin() and gethostname()
 ``<username>@<hostname>$``
 
 ##Working
-Standard commands without flags
+Standard commands with flags
 Proper waiting for child process to terminate
+Handles comments
+Exit works again
+True/False commands
 
 ###Next progression
-Flags for commands
-Parsing multiple commands
+Parsing connectors
+Logical operation for AND/OR
+
+##Actual README soon
