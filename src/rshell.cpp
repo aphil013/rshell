@@ -39,9 +39,8 @@ int main()
 			cmd = std::strtok(NULL, " ");
 			++i;
 		}
-		
-		std::cout << commands[0] << std::endl;	
-		if(commands[0] == "exit")
+		char key[] = "exit";
+		if(strcmp(commands[0], key) == 0)
 		{
 			return 0;
 		}
