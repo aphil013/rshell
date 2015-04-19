@@ -13,9 +13,11 @@
 int main()
 {
 	char login[64]; 
-	getlogin_r(login, sizeof(login)-1); 
+	if(getlogin_r(login, sizeof(login)-1) != 0)
+		perror("getlogin"); 
 	std::string name = login;
-	gethostname(login, sizeof(login)-1);
+	if(gethostname(login, sizeof(login)-1) == -1)
+		perror("gethostname");
 	std::string host = login;
 	name += "@";
 	std::string user = name + host;
