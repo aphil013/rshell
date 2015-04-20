@@ -7,7 +7,6 @@
 #include <string.h>				// strtok
 #include <cstring>				// strcpy()
 #include <vector>
-#include <array>
 
 
 void user_prompt(std::string& user)
@@ -67,8 +66,11 @@ int main()
 
 	std::string cmd_line;
 	int array_sz = 4096;
+
 	while(std::cin.good())
 	{
+		bool prev = true;
+
 		std::cout << user << "$ ";				// Prompt and input 
 		getline(std::cin, cmd_line);
 		int x = cmd_line.find("#", 0);
@@ -78,37 +80,87 @@ int main()
 		std::strcpy(cmd_str, cmd_line.c_str());
 		char** commands = new char*[array_sz];
 
+		
+
+		std::string key;
+		std::string logic;
 		int i = 0;
 		char* cmd = std::strtok(cmd_str, " \t");
-		while(cmd != NULL)					// Populate array of char
-		{							// pointers to cmds and flags
-			commands[i] = cmd;
-			cmd = std::strtok(NULL, " \t");
-			++i;
-		}
-		std::string exit_key = commands[0];
-		if(exit_key == "exit")
+
+		while(cmd != NULL)						// First command apart from connectors
 		{
-			return 0;
-		}
-			int pid = fork();
-			if(pid == 0)
-			{
-				execvp(commands[0], commands);
+			logic = cmd;
+			if(logic == "||" || logic == "&&" || logic == ";")
+				break;	
+			else{		
+				commands[i] = cmd;
+				++i;
+				cmd = std::strtok(NULL, " \t");
 			}
-			else
+		}
+		key = logic;
+		if(commands[0] != NULL)
+		{
+			logic = commands[0];
+			if(logic == "exit")
+				return 0;
+			prev = execute(commands);
+		}
+		for(unsigned int j = 0; j < sizeof(commands); ++j)
+		{
+			commands[j] = '\0';
+		}
+
+		cmd = std::strtok(NULL, " \t");
+		i = 0;		
+		while(cmd != NULL)						// Everything else w/ connector calculation
+		{
+			std::cout << key << " ";
+			logic = cmd;
+			if(logic != "||" && logic != "&&" && logic != ";")
 			{
-				if(pid == -1)
+				commands[i] = cmd;
+				++i;
+			}
+			else if(logic == "||")
+			{
+				key = logic;
+				logic = commands[0];
+				if(logic == "exit")
+					return 0;
+				if(!prev) prev = execute(commands);
+				else prev = 0;
+				for(unsigned int j = 0; j < sizeof(commands); ++j)
 				{
-					perror("fork");
-					exit(1);
+					commands[j] = '\0';
 				}
-				wait(0);
+				i = 0;
 			}
-		
-		for(unsigned int d = 0; d < sizeof(commands); ++d)
-		{
-			commands[d] = '\0';
+			else if(logic == "&&")
+			{
+				key = logic;
+				logic = commands[0];
+				if(logic == "exit")
+					return 0;
+				if(prev) prev = execute(commands);
+				for(unsigned int j = 0; j < sizeof(commands); ++j)
+				{
+					commands[j] = '\0';
+				}
+				i = 0;
+			}
+			cmd = std::strtok(NULL, " \t");
+	
 		}
+		if(i != 0)
+		{
+			std::cout << key << std::endl;
+			if(key == "||")
+				if(!prev) execute(commands);
+			if(key == "&&")
+				if(prev) execute(commands);
+			if(key == ";") execute(commands);
+		}
+			
 	}	
 }
