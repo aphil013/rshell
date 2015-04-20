@@ -1,0 +1,41 @@
+Script started on Sun 19 Apr 2015 11:34:07 PM PDT
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ make
+mkdir -p ./bin
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/rshell.cpp -o ./bin/rshell
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/rshell 
+getlogin: No such process
+@hannes-lx$ ls #standard list command
+bin  exec.script  LICENSE  Makefile  README.md	src  tests
+@hannes-lx$ ls -a #basic flag
+.  ..  bin  exec.script  .git  LICENSE	Makefile  README.md  src  tests
+@hannes-lx$ ls -llllllllllll -l -l -l #Flag spam
+total 24
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 Apr 19 23:34 bin
+-rw-rw-r-- 1 hannes-ub hannes-ub    0 Apr 19 23:34 exec.script
+-rw-rw-r-- 1 hannes-ub hannes-ub 1076 Apr  6 11:49 LICENSE
+-rw-rw-r-- 1 hannes-ub hannes-ub  283 Apr 19 22:12 Makefile
+-rw-rw-r-- 1 hannes-ub hannes-ub 1092 Apr 19 23:18 README.md
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 Apr 19 23:04 src
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 Apr 19 23:21 tests
+@hannes-lx$ ls    pwd || ps #Connectors
+/home/hannes-ub/rshell
+@hannes-lx$ ls  touch test && ls -l test # 
+-rw-rw-r-- 1 hannes-ub hannes-ub 0 Apr 19 23:35 test
+@hannes-lx$ rm test #Editing files
+@hannes-lx$ ls
+bin  exec.script  LICENSE  Makefile  README.md	src  tests
+@hannes-lx$ ls || ls -a || ls -Rl && pwd || ps #Multipl  e connector scenario hanl dled similar to BASH
+bin  exec.script  LICENSE  Makefile  README.md	src  tests
+/home/hannes-ub/rshell
+@hannes-lx$ . bi  .// bin/rseh  hell #Running progrm ams
+getlogin: No such process
+@hannes-lx$ echo super fun assigne ment #  echo test
+super fun assignment
+@hannes-lx$ exit #exiting second rshell
+@hannes-lx$ && || #em  Empty commands with connectors currently seg faults
+Segmentation fault (core dumped)
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ #en[K[KTEST end
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ exit
+exit
+
+Script done on Sun 19 Apr 2015 11:37:55 PM PDT

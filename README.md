@@ -1,20 +1,38 @@
-# rshell
-Folder for homework
+Homework folder for open source course
 
-#Prompt
-updated to display username and host by fetching
-getlogin() and gethostname() 
+#rshell
+Program based on bash terminal
+Similar usage and behavior
+
+#Running
+``$ git clone https://github.com/hannesphillips/rshell.git``
+``$ cd rshell``
+``$ git checkout hw0``
+``$ make``
+``$ bin/rshell``
+
+#Usage
+Uses getlogin() and gethostname() 
 ``<username>@<hostname>$``
+Commands can then be input, eg.:
 
-##Working
-Standard commands with flags
-Proper waiting for child process to terminate
-Handles comments
-Exit works again
-True/False commands
+``$ ls``
+``$ ls -a || exit``
+``$ pwd && ls -l <directory> || mkdir <directory>``
 
-###Next progression
-Parsing connectors
-Logical operation for AND/OR
+The command to quit a session is exit
 
-##Actual README soon
+Connectors may follow a command as shown above. The &&, or AND, connector
+will execute the second command if the first one succeeded. The ||, or OR,
+connector executes the second command if the first one failed.
+
+Option flags are also accepted and can be input without any order.
+ls for example can take -a or -aaaaa -a -a, -al or -l -a, etc.
+
+Terminal comments are given after a '#'. Anything written here is for
+the user(s) use only. The terminal will overlook anything entered after
+
+#Bugs
+The combination of connectors without commands causes the program to
+seg fault.
+Echo and change directory (cd) are not supported.

@@ -9,7 +9,7 @@
 #include <vector>
 
 
-void user_prompt(std::string& user)
+void user_prompt(std::string& user)				// Gets user info for command prompt
 {
 	char login[1024]; 
 	if(getlogin_r(login, sizeof(login)-1) != 0)
@@ -22,7 +22,7 @@ void user_prompt(std::string& user)
 	user = name + host;
 }
 
-bool execute(char** commands)
+bool execute(char** commands)					// Executes and returns success value 
 {
 	if(*commands == NULL)
 	{
@@ -59,33 +59,48 @@ bool execute(char** commands)
 	return true;
 }
 
-int main()
+int main()				
 {
 	std::string user;
 	user_prompt(user);		// Gets login/host info
 
 	std::string cmd_line;
-	int array_sz = 4096;
+	int array_sz = 0x8000;
 
-	while(std::cin.good())
+	while(std::cin.good())		// Continuous loop simulating terminal
 	{
 		bool prev = true;
 
 		std::cout << user << "$ ";				// Prompt and input 
 		getline(std::cin, cmd_line);
 		int x = cmd_line.find("#", 0);
-		if(x >= 0) cmd_line = cmd_line.substr(0, x);
+		if(x >= 0) cmd_line = cmd_line.substr(0, x);		// Takes care of comments
 		
-		char*  cmd_str = new char [cmd_line.length()+1];
+		x = 0;
+		for(std::string::iterator it = cmd_line.begin(); it < cmd_line.end(); ++it)	// Spaces between ';' for parsing
+		{
+			int semi = cmd_line.find(";", x);
+			if(semi >= 0)
+			{
+				cmd_line.insert(semi+1, 1, ' ');
+				cmd_line.insert(semi, 1, ' ');
+
+				it = cmd_line.begin();
+				it += semi + 2;
+				x = semi + 2;
+			}
+		}
+		
+		char*  cmd_str = new char [cmd_line.length()+1];				// Create array of c-strings
 		std::strcpy(cmd_str, cmd_line.c_str());
 		char** commands = new char*[array_sz];
 
 		
 
-		std::string key;
-		std::string logic;
+		std::string key; // Connector storage
+		std::string logic; // Command storage
 		int i = 0;
-		char* cmd = std::strtok(cmd_str, " \t");
+		char* cmd = std::strtok(cmd_str, " \t");			// Begin parsing
 
 		while(cmd != NULL)						// First command apart from connectors
 		{
@@ -99,14 +114,17 @@ int main()
 			}
 		}
 		key = logic;
-		if(commands[0] != NULL)
+		if(commands[0] != NULL)						// Executes first command
 		{
 			logic = commands[0];
 			if(logic == "exit")
 				return 0;
-			prev = execute(commands);
+			if(logic == "")
+				prev = false;
+			else
+				prev = execute(commands);
 		}
-		for(unsigned int j = 0; j < sizeof(commands); ++j)
+		for(unsigned int j = 0; j < sizeof(commands); ++j)		// For loops to "erase" executed command
 		{
 			commands[j] = '\0';
 		}
@@ -115,14 +133,17 @@ int main()
 		i = 0;		
 		while(cmd != NULL)						// Everything else w/ connector calculation
 		{
-			std::cout << key << " ";
 			logic = cmd;
-			if(logic != "||" && logic != "&&" && logic != ";")
+			if(logic == "exit")						// Exit at anytime
+				return 0;
+
+			if(logic == "") prev = false;
+			else if(logic != "||" && logic != "&&" && logic != ";")		// Continue parsing if no connectors reached
 			{
 				commands[i] = cmd;
 				++i;
 			}
-			else if(logic == "||")
+			else if(logic == "||")						// Connectors determine each execution path
 			{
 				key = logic;
 				logic = commands[0];
@@ -141,8 +162,18 @@ int main()
 				key = logic;
 				logic = commands[0];
 				if(logic == "exit")
-					return 0;
+				{	std::cout << "EXIT\n";	return 0;}
 				if(prev) prev = execute(commands);
+				for(unsigned int j = 0; j < sizeof(commands); ++j)
+				{
+					commands[j] = '\0';
+				}
+				i = 0;
+			}
+			else if(logic == ";")
+			{
+				prev = true; 
+					
 				for(unsigned int j = 0; j < sizeof(commands); ++j)
 				{
 					commands[j] = '\0';
@@ -152,9 +183,8 @@ int main()
 			cmd = std::strtok(NULL, " \t");
 	
 		}
-		if(i != 0)
+		if(i != 0)									// Execute last command, if any
 		{
-			std::cout << key << std::endl;
 			if(key == "||")
 				if(!prev) execute(commands);
 			if(key == "&&")
