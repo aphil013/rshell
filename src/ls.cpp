@@ -95,6 +95,65 @@ vector<string> listDir(int flag, string init)
 		}
 		dir_path = copy;
 	}
+	// Determine which type of output is to follow
+	
+	if((flag & FLAG_a) && !(flag & FLAG_l))
+	{
+		unsigned width = 80;	// Output 
+		unsigned longest = 0;	// format
+
+		for(unsigned int i = 0; i < files.size(); ++i)
+		{
+			if(files.at(i).size() > longest)
+				longest = files.at(i).size();
+		}
+		longest += 1; // Space b/w largest entries
+
+		unsigned columns = width/longest;
+		unsigned curr = 0;
+
+		for(unsigned int i = 0; i < files.size(); ++i)
+		{
+			dir_path.append(files.at(i));
+			if((stat(dir_path.c_str(), &statbuf)) == -1)
+			{
+				perror("stat");
+				exit(1);
+			}
+
+			if(files.at(i)[0] == '.') // If hidden file
+			{
+				cout << H_COLOR;
+			}
+			if(S_ISDIR(statbuf.st_mode)) // If directory
+			{
+				cout << D_COLOR;
+				cout << files.at(i) << "/";
+				curr = files.at(i).size() + 1;
+			}
+			else
+			{
+				if(statbuf.st_mode & S_IEXEC) // If executable
+				{
+					cout << E_COLOR;
+				}
+				cout << files.at(i);
+				curr = files.at(i).size();
+			}
+
+			cout << RESET_C; // Reset color output
+			cout << string(longest - curr, ' ');
+			columns--;
+			if(columns == 0)
+			{
+				cout << endl;
+				columns == width/longest;
+			}
+			dir_path = copy;
+		}
+		cout << endl;
+
+	}
 
 	return dir;
 }
