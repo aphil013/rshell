@@ -1,127 +1,87 @@
 #include <iostream>
-#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <dirent.h>						// DIR, DIRENT, OPENDIR,...
+#include <errno.h>
+#include <dirent.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <errno.h>
-
-#include <algorithm>					// Extra utilities
-#include <ctime>
-#include <time.h>
-#include <iomanip>
+#include <string>
+#include <string.h>
 #include <vector>
+#include <algorithm>
+#include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
+#include <ctime>
 
 using namespace std;
 
+#define FLAG_a 1		// Flag value definitons
+#define FLAG_l 2
+#define FLAG_R 4
+
+#define D_COLOR "\x1b[38;5;27m" // Print color definitions
+#define E_COLOR "\x1b[38;5;34m"
+#define H_COLOR "\x1b[47m"
+#define RESET_C "\x1b[0m"
 
 int main(int argc, char** argv)
 {
-	//	cout << "\x1b[94m\x1b[100m";
-	vector <string> arguments;
-	
-	arguments.push_back(".");
+	int flag = 0;
 
-	bool files = false;
+	vector<string> files;
 
-	unsigned int flag = 1;
-	//flag represented by values
-	//none, a, l, R, al, aR, lR, all
-	//1,    2. 3. 5. 6.  10, 15, 30
-	
-
-	for (int i = 1; i < argc; i++)		// Checks all possible combinations of flags
+	for(unsigned int i = 1; i < argc; ++i)
 	{
-		if (!strcmp(argv[i] , "-a"))
+		if(argv[i][0] == '-') // Is a flag
 		{
-			flag *= 2;
-		}
-
-		else if (!strcmp(argv[i] , "-l"))
-		{
-			flag *= 3;
-		}
-
-		else if (!strcmp(argv[i], "-R"))
-		{
-			flag *= 5;
-		}
-
-		else if (!strcmp(argv[i], "-al"))
-		{
-			flag *= 6;
-		}
-
-		else if (!strcmp(argv[i], "-la"))
-		{
-			flag *= 6;
-		}
-
-		else if (!strcmp(argv[i], "-aR"))
-		{
-			flag *= 10;
-		}
-
-		else if (!strcmp(argv[i], "-Ra"))
-		{
-			flag *= 10;
-		}
-
-		else if (!strcmp(argv[i], "-lR"))
-		{
-			flag *= 15;
-		}
-
-		else if (!strcmp(argv[i], "-Rl"))
-		{
-			flag *= 15;
-		}
-
-		else if (!strcmp(argv[i], "-alR"))
-		{
-			flag *= 30;
-		}
-		
-		else if (!strcmp(argv[i], "-aRl"))
-		{
-			flag *= 30;
-		}
-
-		else if (!strcmp(argv[i], "-Ral"))
-		{
-			flag *= 30;
-		}
-		
-		else if (!strcmp(argv[i], "-laR"))
-		{
-			flag *= 30;
-		}
-		
-		else if (!strcmp(argv[i], "-Rla"))
-		{
-			flag *= 30;
-		}
-		
-		else if (!strcmp(argv[i], "-lRa"))			
-		{
-			flag *= 30;
-		}
-
-		else 
-		{
-			if (files == false)
+			for(int j =1; argv[i][j] != 0; ++j)
 			{
-				files = true;
-				string temp = argv[i]; //temp to store commands
-				arguments.at(0) = temp;
+				if(argv[i][j] == 'a')
+					flag |= FLAG_a;
+				else if(argv[i][j] == 'l')
+					flag |= FLAG_l;
+				else if(argv[i][j] == 'R')
+					flag |= FLAG_R;
+				else // Invalid flags were passed
+				{
+					cerr << "ls: invalid option -- \'" << argv[i][j] << "\'\n";
+					exit(1);
+				}
 			}
-			else 
+		}
+		else files.push_back(argv[i]);
+	}
+
+	sort(files.begin(), files.end(), compare);
+	if(files.empty())
+	{
+		if(flag & FLAG_R)
+			allDir(flag, ".");
+		else
+			listDir(flag, ".");
+	}
+	else
+	{
+		for(unsigned int i = 0; i < files.size(); ++i)
+		{
+			if(flag & FLAG_R)
 			{
-				arguments.push_back(argv[i]);
+				allDir(flag, files.at(i));
+
+				if(!(i+1 == files.size()))
+					cout << endl;
+			}
+			else
+			{
+				if(files.size() > 1)
+					cout << files.at(i) << ":" << endl;
+				listDir(flag, files.at(i));
+
+				if(!(i+1 == files.size()))
+					cout << endl;
 			}
 		}
 	}
-
 	return 0;
 }
