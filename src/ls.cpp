@@ -25,6 +25,35 @@ using namespace std;
 #define H_COLOR "\x1b[47m"
 #define RESET_C "\x1b[0m"
 
+bool compare(const string& s1, const string& s2)	// Comparison for sort function
+{
+	return strcasecmp(s1.c_str(), s2.c_str()) <= 0;
+}
+
+vector<string> listDir(int flag, string init)
+{
+	vector<string> dir;
+
+	return dir;
+}
+
+void allDir(int flag, string init)
+{
+	cout << init << ":" << endl;
+
+	vector<string> dir = listDir(flag, init);
+
+	if(dir.empty())
+		return;
+	cout << endl;
+
+	for(unsigned int i = 0; i < dir.size(); ++i) // Recursion happens here
+	{
+		allDir(flag, dir.at(i));
+	}
+	return;
+}
+
 int main(int argc, char** argv)
 {
 	int flag = 0;
