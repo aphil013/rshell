@@ -54,7 +54,7 @@ vector<string> listDir(int flag, string init)
 	}
 	
 	dirent *dirent_ptr;
-	while(dirent_ptr = readdir(dir_ptr))
+	while((dirent_ptr = readdir(dir_ptr)))
 		files.push_back(dirent_ptr->d_name);
 	
 	if(errno != 0)
@@ -91,13 +91,14 @@ vector<string> listDir(int flag, string init)
 
 		if((files.at(i) != ".") && (files.at(i) != "..") && (S_ISDIR(statbuf.st_mode)))
 		{
+			if((files.at(i)[0] == '.') && !(flag & FLAG_a));
 			dir.push_back(dir_path);
 		}
 		dir_path = copy;
 	}
 	// Determine which type of output is to follow
 	
-	if((flag & FLAG_a) && !(flag & FLAG_l))
+	if((flag & FLAG_a) && !(flag & FLAG_l)) // -a and not -l
 	{
 		unsigned width = 80;	// Output 
 		unsigned longest = 0;	// format
@@ -128,7 +129,7 @@ vector<string> listDir(int flag, string init)
 			if(S_ISDIR(statbuf.st_mode)) // If directory
 			{
 				cout << D_COLOR;
-				cout << files.at(i) << "/";
+				cout << files.at(i); // << "/";
 				curr = files.at(i).size() + 1;
 			}
 			else
@@ -147,7 +148,7 @@ vector<string> listDir(int flag, string init)
 			if(columns == 0)
 			{
 				cout << endl;
-				columns == width/longest;
+				columns = width/longest;
 			}
 			dir_path = copy;
 		}
@@ -155,7 +156,7 @@ vector<string> listDir(int flag, string init)
 
 	}
 
-	else if(flag & FLAG_l)
+	else if(flag & FLAG_l) // -l
 	{
 		int block = 0;
 		for(unsigned int i = 0; i < files.size(); ++i)
@@ -169,8 +170,7 @@ vector<string> listDir(int flag, string init)
 
 		for(unsigned int i = 0; i < files.size(); ++i)
 		{
-			if(files.at(i)[0] == '.' && !(flag && FLAG_a))
-				continue;
+			if((files.at(i)[0] == '.') && !(flag & FLAG_a));
 			else
 			{
 				if(S_ISDIR(info.at(i).st_mode))
@@ -235,7 +235,6 @@ vector<string> listDir(int flag, string init)
 				{
 					cout << D_COLOR;
 					cout << files.at(i);
-					cout << '/';
 				}
 				else
 				{
@@ -286,7 +285,7 @@ vector<string> listDir(int flag, string init)
 				if(S_ISDIR(statbuf.st_mode))
 				{
 					cout << D_COLOR;
-					cout << files.at(i) << "/";
+					cout << files.at(i); // << "/";
 					curr = files.at(i).size() + 1;
 					cout << RESET_C;
 				}
@@ -343,7 +342,7 @@ int main(int argc, char** argv)
 
 	vector<string> files;
 
-	for(unsigned int i = 1; i < argc; ++i)
+	for(int i = 1; i < argc; ++i)
 	{
 		if(argv[i][0] == '-') // Is a flag
 		{

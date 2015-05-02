@@ -79,3 +79,5 @@ seg fault.
 
 Echo is currently unpredictable under my tests
 Change directory (cd) is not supported.
+
+ls -R currently displays -R -a
