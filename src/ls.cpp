@@ -20,8 +20,8 @@ using namespace std;
 #define FLAG_l 2
 #define FLAG_R 4
 
-#define D_COLOR "\x1b[38;5;27m" // Print color definitions
-#define E_COLOR "\x1b[38;5;34m"
+#define D_COLOR "\x1b[34m" // Print color definitions
+#define E_COLOR "\x1b[32;2m"
 #define H_COLOR "\x1b[47m"
 #define RESET_C "\x1b[0m"
 

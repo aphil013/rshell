@@ -59,6 +59,10 @@ The program takes all types and forms of flags the BASH ls takes and can be ran 
 ##Features
 `$ bin/ls` runs basic list and will print all files and directories in the current working directory
 
+`$ bin/ls <flag>... <directory>...`
+
+The ellipses, `...`, indicate any number of these parameters can be input
+
 `$ bin/ls -a` runs ls and displays hidden files and folders
 
 `$ bin/ls -l` runs in depth list that displays permissions of file/folder (read, write, and execute), the owner and group, and when the item was last edited
@@ -69,9 +73,11 @@ All of these flags can be combined or used simultaneously, i.e. -
 
 `$ bin/ls -a -l` or `$ bin/ls -Rl -a` etc.
 
-The program also handles multiple inputs of the same flag and will treat it as a single flag of that type
+The program also handles multiple inputs of the same flag and will treat it as a single flag of that type. Furthermore, `bin/ls -a -l` is equivalent to `bin/ls -al` and `bin/ls -lll -a -l`
 
 Input of an incorrect flag will result in an error
+
+The command also takes directories as an input parameter to specify listing the contents of only the specified directory
 
 #Known Bugs
 The combination of connectors without commands causes the program to
