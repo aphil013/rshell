@@ -1,0 +1,640 @@
+Script started on Fri 01 May 2015 06:41:45 PM PDT
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ make #Make l[Krshell and ls
+mkdir -p ./bin
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/rshell.cpp -o ./bin/rshell
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/ls.cpp -o ./bin/ls
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin [K/l[K[K[K[K[Kbin/s[Kls #B[KStandard list
+[38;5;27mbin[0m       LICENSE[0m    Makefile[0m   README.md[0m  [38;5;27msrc[0m       [38;5;27mtests[0m     
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls -a #Hidden fie[Kles
+[47m[38;5;27m.[0m        [47m[38;5;27m..[0m       [47m[38;5;27m.git[0m     [38;5;27mbin[0m      LICENSE[0m   Makefile[0m  README.md[0m [38;5;27msrc[0m      
+[38;5;27mtests[0m    
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls -a #Hidden files[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kbin/ -l  [K#Input [K[K[K[K[K[KSpecid[Kfy directory, -l flag, and executable files
+total: 84
+-rwxrwxr-x 1 hannes-ub hannes-ub 61921 May  1 18:41 [38;5;34mls[0m
+-rwxrwxr-x 1 hannes-ub hannes-ub 20263 May  1 18:41 [38;5;34mrshell[0m
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls bin/ -l #Specify directory, -l flag, and executable files[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-a #Hidden files[K[41@bin/ -l #Specify directory, -l flag, and executable[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-a -lllllll -al #Combining flags and multiple of same flag
+total: 92
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [47m[38;5;27m.[0m
+drwxrwxr-x 6 hannes-ub hannes-ub 4096 May  1 18:41 [47m[38;5;27m..[0m
+-rwxrwxr-x 1 hannes-ub hannes-ub 61921 May  1 18:41 [38;5;34mls[0m
+-rwxrwxr-x 1 hannes-ub hannes-ub 20263 May  1 18:41 [38;5;34mrshell[0m
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls bin/ -l -a -lllllll -al #Combining flags and multiple of same flag[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kn/ls -a -aaaaaaa[K[K[K[K[K[K[K[K[Kl
+total: 36
+drwxrwxr-x 6 hannes-ub hannes-ub 4096 May  1 18:41 [47m[38;5;27m.[0m
+drwxr-xr-x 26 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m..[0m
+drwxrwxr-x 8 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m.git[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mbin[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 1076 Apr  6 11:49 LICENSE[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 455 May  1 17:29 Makefile[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 2228 May  1 18:37 README.md[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:38 [38;5;27msrc[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mtests[0m
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls -al[K[Kla
+total: 36
+drwxrwxr-x 6 hannes-ub hannes-ub 4096 May  1 18:41 [47m[38;5;27m.[0m
+drwxr-xr-x 26 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m..[0m
+drwxrwxr-x 8 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m.git[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mbin[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 1076 Apr  6 11:49 LICENSE[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 455 May  1 17:29 Makefile[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 2228 May  1 18:37 README.md[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:38 [38;5;27msrc[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mtests[0m
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls -la[K[Ka -l #Order of flg[Kags has no effect
+total: 36
+drwxrwxr-x 6 hannes-ub hannes-ub 4096 May  1 18:41 [47m[38;5;27m.[0m
+drwxr-xr-x 26 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m..[0m
+drwxrwxr-x 8 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m.git[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mbin[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 1076 Apr  6 11:49 LICENSE[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 455 May  1 17:29 Makefile[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 2228 May  1 18:37 README.md[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:38 [38;5;27msrc[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mtests[0m
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls -a -l #Order of flags has no effect[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-RA[Ka   [K#Re[K[K-R -a works
+.:
+[47m[38;5;27m.[0m        [47m[38;5;27m..[0m       [47m[38;5;27m.git[0m     [38;5;27mbin[0m      LICENSE[0m   Makefile[0m  README.md[0m [38;5;27msrc[0m      
+[38;5;27mtests[0m    
+
+./.git:
+[47m[38;5;27m.[0m             [47m[38;5;27m..[0m            [38;5;27mbranches[0m      COMMIT_EDITMSG[0m config[0m         
+description[0m    FETCH_HEAD[0m     HEAD[0m           [38;5;27mhooks[0m         index[0m          
+[38;5;27minfo[0m          [38;5;27mlogs[0m          [38;5;27mobjects[0m       ORIG_HEAD[0m      packed-refs[0m    
+[38;5;27mrefs[0m          
+
+./.git/branches:
+[47m[38;5;27m.[0m [47m[38;5;27m..[0m
+./.git/hooks:
+[47m[38;5;27m.[0m                        [47m[38;5;27m..[0m                       [38;5;34mapplypatch-msg.sample[0m     
+[38;5;34mcommit-msg.sample[0m         [38;5;34mpost-update.sample[0m        [38;5;34mpre-applypatch.sample[0m     
+[38;5;34mpre-commit.sample[0m         [38;5;34mpre-push.sample[0m           [38;5;34mpre-rebase.sample[0m         
+[38;5;34mprepare-commit-msg.sample[0m [38;5;34mupdate.sample[0m             
+./.git/info:
+[47m[38;5;27m.[0m      [47m[38;5;27m..[0m     exclude[0m 
+./.git/logs:
+[47m[38;5;27m.[0m   [47m[38;5;27m..[0m  HEAD[0m [38;5;27mrefs[0m
+
+./.git/logs/refs:
+[47m[38;5;27m.[0m      [47m[38;5;27m..[0m     [38;5;27mheads[0m  [38;5;27mremotes[0m
+
+./.git/logs/refs/heads:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    exec[0m   ls[0m     master[0m 
+./.git/logs/refs/remotes:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    [38;5;27morigin[0m
+
+./.git/logs/refs/remotes/origin:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    exec[0m   HEAD[0m   master[0m 
+./.git/objects:
+[47m[38;5;27m.[0m   [47m[38;5;27m..[0m  [38;5;27m03[0m  [38;5;27m09[0m  [38;5;27m0b[0m  [38;5;27m12[0m  [38;5;27m13[0m  [38;5;27m14[0m  [38;5;27m15[0m  [38;5;27m16[0m  [38;5;27m1b[0m  [38;5;27m1e[0m  [38;5;27m20[0m  [38;5;27m26[0m  [38;5;27m2b[0m  [38;5;27m2d[0m  
+[38;5;27m2e[0m  [38;5;27m2f[0m  [38;5;27m30[0m  [38;5;27m31[0m  [38;5;27m37[0m  [38;5;27m3a[0m  [38;5;27m3b[0m  [38;5;27m43[0m  [38;5;27m44[0m  [38;5;27m46[0m  [38;5;27m4d[0m  [38;5;27m51[0m  [38;5;27m58[0m  [38;5;27m62[0m  [38;5;27m64[0m  [38;5;27m65[0m  
+[38;5;27m6a[0m  [38;5;27m6b[0m  [38;5;27m6d[0m  [38;5;27m6e[0m  [38;5;27m6f[0m  [38;5;27m70[0m  [38;5;27m74[0m  [38;5;27m75[0m  [38;5;27m78[0m  [38;5;27m7a[0m  [38;5;27m85[0m  [38;5;27m8b[0m  [38;5;27m8d[0m  [38;5;27m90[0m  [38;5;27m92[0m  [38;5;27m99[0m  
+[38;5;27m9c[0m  [38;5;27ma0[0m  [38;5;27ma1[0m  [38;5;27ma2[0m  [38;5;27ma4[0m  [38;5;27ma8[0m  [38;5;27mac[0m  [38;5;27mb0[0m  [38;5;27mb1[0m  [38;5;27mb2[0m  [38;5;27mb3[0m  [38;5;27mb4[0m  [38;5;27mb8[0m  [38;5;27mbc[0m  [38;5;27mbf[0m  [38;5;27mc0[0m  
+[38;5;27mc2[0m  [38;5;27mc3[0m  [38;5;27mc4[0m  [38;5;27mca[0m  [38;5;27mcb[0m  [38;5;27mcc[0m  [38;5;27mce[0m  [38;5;27mcf[0m  [38;5;27md0[0m  [38;5;27md3[0m  [38;5;27md9[0m  [38;5;27mdb[0m  [38;5;27me0[0m  [38;5;27me9[0m  [38;5;27meb[0m  [38;5;27mec[0m  
+[38;5;27mf2[0m  [38;5;27mf3[0m  [38;5;27mf4[0m  [38;5;27mf6[0m  [38;5;27mf7[0m  [38;5;27mf8[0m  [38;5;27mf9[0m  [38;5;27minfo[0m[38;5;27mpack[0m
+
+./.git/objects/03:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+9f67bfa02d33a245a9dd85ddf90d4dd621b414[0m d27492677a719b3019fdcff12ca56176a7ad3a[0m 
+
+./.git/objects/09:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+2b83513066bc36c9cbf3ab1dfd1a0f35801365[0m ae67833ebd35fd37b9c9f6db02caaecdd10827[0m 
+
+./.git/objects/0b:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+53ad4347afdcb08cc8ffd44d2a8d32e0d4a805[0m 
+./.git/objects/12:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+061fb05e74f2de20bbf8449ddb9198dfe60dc5[0m 
+./.git/objects/13:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+d8d68b2c61be2ecad9690fa6db257d75d8eefd[0m 
+./.git/objects/14:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+4e2152456407ffd4aa7e4acad540c313ca1cf5[0m 
+./.git/objects/15:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+a6054710b10ecfc72fdbbc08c3487d61765b65[0m 
+./.git/objects/16:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+80c7e5a9f186fc17591c71fa17c2b07b31b4a3[0m 
+./.git/objects/1b:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+b4372c472f87a7b3e61a93de7abbfac3251338[0m 
+./.git/objects/1e:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+b11809d1c0dd93721a44e193e45c570b960348[0m 
+./.git/objects/20:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+73b289290ea57ce3c628ceadebacc70f7d016d[0m 
+./.git/objects/26:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+1afba04282c8621f69410b48e2f30a96c9920b[0m 
+./.git/objects/2b:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+4ce9658ec4243e28a63d18c4d39a6799f16596[0m 
+./.git/objects/2d:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+44a2ec3c7e0f1623a5e27c6848b486a5860c1f[0m 
+./.git/objects/2e:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+9db11fe108a9ef9ed229e9b8eddb9e77fd3f74[0m 
+./.git/objects/2f:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+2b5a2a86998584e4d5a7b916ce07eaf0cd75ee[0m 
+./.git/objects/30:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+59d5e9b1bab781d14c981ed2ec67ad85950f09[0m 
+./.git/objects/31:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+6db6dbd1c1c90fa019ceae8e4230d327e6a5c3[0m 
+./.git/objects/37:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+7acc7cf650146d724fb1390be8d8981b33019c[0m 
+./.git/objects/3a:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+dce05596b686cf599fc8a3aaa8a52125812f25[0m 
+./.git/objects/3b:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+cec39972a10908572002d5a231ff99bccba780[0m 
+./.git/objects/43:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+bf600626360e22af3042ba6d20e52ebbb6e196[0m 
+./.git/objects/44:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+9f9c12a713711a0f5effe2834afe470ac06ab4[0m 
+./.git/objects/46:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+531d5b3122514605c5da13ae051ae5a01ccb2b[0m 
+./.git/objects/4d:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+e07bf9568fdd09eabddf788505e04357085cb4[0m 
+./.git/objects/51:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+8d17da5c54169690722e01d9758f1dd2e97bcb[0m cf16bfc2a95f47ace482b6fd2c509fd0f41bde[0m 
+
+./.git/objects/58:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+702aad44197d369f17477253598a77d9a41398[0m 
+./.git/objects/62:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+89cab18bd7451a51c4de0897770d1a87ebaade[0m 
+./.git/objects/64:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+1a70a1e4721e6fb7c09342c879c41d15cae2bd[0m 
+./.git/objects/65:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+53f7cd8bb06753a15accf5c01c842a1401b0ba[0m 
+./.git/objects/6a:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+a89b03650279ad306b5aeb600d0e9e1d076c95[0m 
+./.git/objects/6b:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+99cd9fe9971b0713c4941a2d7e3be9413bfc8a[0m 
+./.git/objects/6d:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+fd4f09b08797aa1793f2efa7ae699f8e2bcf71[0m 
+./.git/objects/6e:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+d26fe4dbe5070f0f95752f5b24110d75f3df41[0m 
+./.git/objects/6f:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+6d2636470091219e525a952c2738e9e59c1691[0m 
+./.git/objects/70:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+a15cdc7f374684d18fbcdd0803db585a6fbb99[0m 
+./.git/objects/74:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+0da05ea5b006491bbaebaf6e3d99d0d3f3e81c[0m 67611a5ba18b3395a1b0413a2864efaae22d0d[0m 
+
+./.git/objects/75:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+5d00056580880c29e00883b1ebe759c7cd36d5[0m 
+./.git/objects/78:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+0a04b74e9324d43f683409a35a1626f824032a[0m 57b13506481fb3a14c1491968c5b947cf20074[0m 
+
+./.git/objects/7a:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+416164ae84e65c7998f50eedb2cf95c4fadbf4[0m 
+./.git/objects/85:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+40ed272240b5714fedf10869ef8e724628be26[0m 
+./.git/objects/8b:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+330524e282bfd6b81af8b4f76f40fb2f0bad99[0m 
+./.git/objects/8d:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+cd0054d4c5c4f9b15637ff5a5884bafe7e8dcb[0m 
+./.git/objects/90:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+2c48eace467769a28849fbade0314f8fe87bc2[0m 7bc5290aa8a25ca08e0fde6809f1c419a6bb66[0m 
+8dcc134edae0261559557d9b5a635e67c9f6f3[0m 
+./.git/objects/92:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+de39d6a436fb5a4c10659101b88b5a86dd81f9[0m 
+./.git/objects/99:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+ca1742a230cf1e5dc5029e2833280614497012[0m 
+./.git/objects/9c:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+9a9ba01d901584be8945e492e75a6e7f9843ec[0m 
+./.git/objects/a0:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+4e43d24ec0232180621c3f271238874e7513a5[0m 9f46a2982e6219fafd079297999a85a652e91d[0m 
+
+./.git/objects/a1:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+5db5123badb505932205005bf83e3593981d6d[0m 
+./.git/objects/a2:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+5a11df993ca62286c0f81ebf3b7e8636d6f2ec[0m d97a392704ae88e3f8c8e1d0c06aa2aee78064[0m 
+
+./.git/objects/a4:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+6576114e45f4f01165518909e5e563f2a78158[0m 
+./.git/objects/a8:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+d3ddeed55441cdae9bc243334749525a3600b7[0m 
+./.git/objects/ac:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+f7aa693c81bc078d74a1b104cfbe8295124e0b[0m 
+./.git/objects/b0:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+ee28b9461382bba99ba9e2ba95f2c7cf9f723f[0m 
+./.git/objects/b1:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+0f3fbe2fb57a4d8d70fe31033021b25da6b5e9[0m 
+./.git/objects/b2:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+5f1f672bd3b99a7a96750085d8e4e4babb5e90[0m 
+./.git/objects/b3:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+4b35602bb56796e23e3f784aa6c3200b7c16a4[0m 
+./.git/objects/b4:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+f52773973d96bb0fb0bccc15b17a490c0cfacb[0m 
+./.git/objects/b8:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+8f94ea22969bf8f20df07f728879a4a1544e2c[0m 
+./.git/objects/bc:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+b53047145fd7d4d23c178f937d315a516d1818[0m 
+./.git/objects/bf:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+c708c49f16b152c52a18e76dfeb355cd2dc350[0m 
+./.git/objects/c0:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+1080991198b81c69a6ee392198f2d289aaca01[0m 
+./.git/objects/c2:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+641f880f79af9f8c14445446bce2803e4dd27d[0m 
+./.git/objects/c3:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+5de7bd09ee6969e91cdc676127d3ce28b15211[0m 
+./.git/objects/c4:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+3bf560338dfb9499731a7dae7f4471680ce6cb[0m 3eddd6968e1cac2f48ed206f6e96efb8a4d4fc[0m 
+
+./.git/objects/ca:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+7f0253e948cdeb8c2009efbad6aec0cef5a7a2[0m 
+./.git/objects/cb:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+56774506784a588bc0945702d66033cf45b0c1[0m 
+./.git/objects/cc:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+e6786c82715a8a368daea856639ba80e4158fe[0m 
+./.git/objects/ce:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+f3a1cb665ae1a51680ac6ccf548d31fab5d181[0m 
+./.git/objects/cf:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+d4c2c3014f61444853cbfa5d23bb0017738105[0m 
+./.git/objects/d0:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+a0ea375dcffb8c75e3b777785b3b920e31042b[0m 
+./.git/objects/d3:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+11e91c73812f255a5cc2d42d0e4052a5d69fd3[0m 
+./.git/objects/d9:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+3bd4dcc90fe6af73b87d095e4c07e1425cb2be[0m 
+./.git/objects/db:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+0e803ea01b0da2790df2723e2d4ccd9e7d0079[0m 
+./.git/objects/e0:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+c716744d2012e303de0663b39716d8cf00056b[0m 
+./.git/objects/e9:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+8832c3e431d0cc32ce430b8627eb60c2f0ada1[0m de00b1b093814049d0a1cc485d383fcf5c4471[0m 
+
+./.git/objects/eb:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+21db74129bd913d6a0e149f0fb9b64a140fb7d[0m 
+./.git/objects/ec:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+ec300efb2e73e3fb4fd743d1bd4df6f9a85f18[0m 
+./.git/objects/f2:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+979b87d9255b470067766110df42df5dc0718c[0m 
+./.git/objects/f3:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+c87c4642153ef996995a4fbb2229656c3b6468[0m 
+./.git/objects/f4:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+62c581df4b71183bcaf48fa39046ddd317cbfa[0m 
+./.git/objects/f6:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+4968dc3da23eb76546d3afa2797537ef454363[0m 
+./.git/objects/f7:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+a55780c352cf9f6b28a561de82a18104cfd835[0m 
+./.git/objects/f8:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+673c2c3bd9807abbd3b853e0a98f2495f2c0ec[0m dcdbcfe9f45c4cfde75f297475e22652692cab[0m 
+
+./.git/objects/f9:
+[47m[38;5;27m.[0m                                     [47m[38;5;27m..[0m                                    
+26de2d2a7302b504611cf5609348a733ccd423[0m 9e607f51fc8d470d2222d1fecede03442dd4b3[0m 
+
+./.git/objects/info:
+[47m[38;5;27m.[0m [47m[38;5;27m..[0m
+./.git/objects/pack:
+[47m[38;5;27m.[0m [47m[38;5;27m..[0m
+./.git/refs:
+[47m[38;5;27m.[0m      [47m[38;5;27m..[0m     [38;5;27mheads[0m  [38;5;27mremotes[0m[38;5;27mtags[0m   
+
+./.git/refs/heads:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    exec[0m   ls[0m     master[0m 
+./.git/refs/remotes:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    [38;5;27morigin[0m
+
+./.git/refs/remotes/origin:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    exec[0m   HEAD[0m   master[0m 
+./.git/refs/tags:
+[47m[38;5;27m.[0m  [47m[38;5;27m..[0m hw0[0m 
+./bin:
+[47m[38;5;27m.[0m     [47m[38;5;27m..[0m    [38;5;34mls[0m     [38;5;34mrshell[0m 
+./src:
+[47m[38;5;27m.[0m         [47m[38;5;27m..[0m        ls.cpp[0m     rshell.cpp[0m 
+./tests:
+[47m[38;5;27m.[0m          [47m[38;5;27m..[0m         exec.script[0m ls.script[0m   
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ ls[K[Kbin/ls src  #Wrong input error
+ls.cpp[0m      rshell.cpp[0m  
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls src  #Wrong input error[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K  #Wrong input erro
+opendir: No such file or directory
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls sr  #Wrong input erro[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-aa[K[Kddd[K[K[Kqqq[K #Bad flag
+ls: invalid option -- 'q'
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/ls -qq #Bad flag[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls -R #ad[K[Kbad rex[Kcursion
+.:
+[38;5;27mbin[0m       LICENSE[0m    Makefile[0m   README.md[0m  [38;5;27msrc[0m       [38;5;27mtests[0m     
+
+./.git:
+[38;5;27mbranches[0m       COMMIT_EDITMSG[0m  config[0m          description[0m     FETCH_HEAD[0m      
+HEAD[0m            [38;5;27mhooks[0m          index[0m           [38;5;27minfo[0m           [38;5;27mlogs[0m           
+[38;5;27mobjects[0m        ORIG_HEAD[0m       packed-refs[0m     [38;5;27mrefs[0m           
+
+./.git/branches:
+./.git/hooks:
+[38;5;34mapplypatch-msg.sample[0m      [38;5;34mcommit-msg.sample[0m          
+[38;5;34mpost-update.sample[0m         [38;5;34mpre-applypatch.sample[0m      
+[38;5;34mpre-commit.sample[0m          [38;5;34mpre-push.sample[0m            
+[38;5;34mpre-rebase.sample[0m          [38;5;34mprepare-commit-msg.sample[0m  
+[38;5;34mupdate.sample[0m              
+./.git/info:
+exclude[0m  
+./.git/logs:
+HEAD[0m  [38;5;27mrefs[0m 
+
+./.git/logs/refs:
+[38;5;27mheads[0m   [38;5;27mremotes[0m 
+
+./.git/logs/refs/heads:
+exec[0m    ls[0m      master[0m  
+./.git/logs/refs/remotes:
+[38;5;27morigin[0m 
+
+./.git/logs/refs/remotes/origin:
+exec[0m    HEAD[0m    master[0m  
+./.git/objects:
+[38;5;27m03[0m   [38;5;27m09[0m   [38;5;27m0b[0m   [38;5;27m12[0m   [38;5;27m13[0m   [38;5;27m14[0m   [38;5;27m15[0m   [38;5;27m16[0m   [38;5;27m1b[0m   [38;5;27m1e[0m   [38;5;27m20[0m   [38;5;27m26[0m   [38;5;27m2b[0m   
+[38;5;27m2d[0m   [38;5;27m2e[0m   [38;5;27m2f[0m   [38;5;27m30[0m   [38;5;27m31[0m   [38;5;27m37[0m   [38;5;27m3a[0m   [38;5;27m3b[0m   [38;5;27m43[0m   [38;5;27m44[0m   [38;5;27m46[0m   [38;5;27m4d[0m   [38;5;27m51[0m   
+[38;5;27m58[0m   [38;5;27m62[0m   [38;5;27m64[0m   [38;5;27m65[0m   [38;5;27m6a[0m   [38;5;27m6b[0m   [38;5;27m6d[0m   [38;5;27m6e[0m   [38;5;27m6f[0m   [38;5;27m70[0m   [38;5;27m74[0m   [38;5;27m75[0m   [38;5;27m78[0m   
+[38;5;27m7a[0m   [38;5;27m85[0m   [38;5;27m8b[0m   [38;5;27m8d[0m   [38;5;27m90[0m   [38;5;27m92[0m   [38;5;27m99[0m   [38;5;27m9c[0m   [38;5;27ma0[0m   [38;5;27ma1[0m   [38;5;27ma2[0m   [38;5;27ma4[0m   [38;5;27ma8[0m   
+[38;5;27mac[0m   [38;5;27mb0[0m   [38;5;27mb1[0m   [38;5;27mb2[0m   [38;5;27mb3[0m   [38;5;27mb4[0m   [38;5;27mb8[0m   [38;5;27mbc[0m   [38;5;27mbf[0m   [38;5;27mc0[0m   [38;5;27mc2[0m   [38;5;27mc3[0m   [38;5;27mc4[0m   
+[38;5;27mca[0m   [38;5;27mcb[0m   [38;5;27mcc[0m   [38;5;27mce[0m   [38;5;27mcf[0m   [38;5;27md0[0m   [38;5;27md3[0m   [38;5;27md9[0m   [38;5;27mdb[0m   [38;5;27me0[0m   [38;5;27me9[0m   [38;5;27meb[0m   [38;5;27mec[0m   
+[38;5;27mf2[0m   [38;5;27mf3[0m   [38;5;27mf4[0m   [38;5;27mf6[0m   [38;5;27mf7[0m   [38;5;27mf8[0m   [38;5;27mf9[0m   [38;5;27minfo[0m [38;5;27mpack[0m 
+
+./.git/objects/03:
+9f67bfa02d33a245a9dd85ddf90d4dd621b414[0m  d27492677a719b3019fdcff12ca56176a7ad3a[0m  
+./.git/objects/09:
+2b83513066bc36c9cbf3ab1dfd1a0f35801365[0m  ae67833ebd35fd37b9c9f6db02caaecdd10827[0m  
+./.git/objects/0b:
+53ad4347afdcb08cc8ffd44d2a8d32e0d4a805[0m  
+./.git/objects/12:
+061fb05e74f2de20bbf8449ddb9198dfe60dc5[0m  
+./.git/objects/13:
+d8d68b2c61be2ecad9690fa6db257d75d8eefd[0m  
+./.git/objects/14:
+4e2152456407ffd4aa7e4acad540c313ca1cf5[0m  
+./.git/objects/15:
+a6054710b10ecfc72fdbbc08c3487d61765b65[0m  
+./.git/objects/16:
+80c7e5a9f186fc17591c71fa17c2b07b31b4a3[0m  
+./.git/objects/1b:
+b4372c472f87a7b3e61a93de7abbfac3251338[0m  
+./.git/objects/1e:
+b11809d1c0dd93721a44e193e45c570b960348[0m  
+./.git/objects/20:
+73b289290ea57ce3c628ceadebacc70f7d016d[0m  
+./.git/objects/26:
+1afba04282c8621f69410b48e2f30a96c9920b[0m  
+./.git/objects/2b:
+4ce9658ec4243e28a63d18c4d39a6799f16596[0m  
+./.git/objects/2d:
+44a2ec3c7e0f1623a5e27c6848b486a5860c1f[0m  
+./.git/objects/2e:
+9db11fe108a9ef9ed229e9b8eddb9e77fd3f74[0m  
+./.git/objects/2f:
+2b5a2a86998584e4d5a7b916ce07eaf0cd75ee[0m  
+./.git/objects/30:
+59d5e9b1bab781d14c981ed2ec67ad85950f09[0m  
+./.git/objects/31:
+6db6dbd1c1c90fa019ceae8e4230d327e6a5c3[0m  
+./.git/objects/37:
+7acc7cf650146d724fb1390be8d8981b33019c[0m  
+./.git/objects/3a:
+dce05596b686cf599fc8a3aaa8a52125812f25[0m  
+./.git/objects/3b:
+cec39972a10908572002d5a231ff99bccba780[0m  
+./.git/objects/43:
+bf600626360e22af3042ba6d20e52ebbb6e196[0m  
+./.git/objects/44:
+9f9c12a713711a0f5effe2834afe470ac06ab4[0m  
+./.git/objects/46:
+531d5b3122514605c5da13ae051ae5a01ccb2b[0m  
+./.git/objects/4d:
+e07bf9568fdd09eabddf788505e04357085cb4[0m  
+./.git/objects/51:
+8d17da5c54169690722e01d9758f1dd2e97bcb[0m  cf16bfc2a95f47ace482b6fd2c509fd0f41bde[0m  
+./.git/objects/58:
+702aad44197d369f17477253598a77d9a41398[0m  
+./.git/objects/62:
+89cab18bd7451a51c4de0897770d1a87ebaade[0m  
+./.git/objects/64:
+1a70a1e4721e6fb7c09342c879c41d15cae2bd[0m  
+./.git/objects/65:
+53f7cd8bb06753a15accf5c01c842a1401b0ba[0m  
+./.git/objects/6a:
+a89b03650279ad306b5aeb600d0e9e1d076c95[0m  
+./.git/objects/6b:
+99cd9fe9971b0713c4941a2d7e3be9413bfc8a[0m  
+./.git/objects/6d:
+fd4f09b08797aa1793f2efa7ae699f8e2bcf71[0m  
+./.git/objects/6e:
+d26fe4dbe5070f0f95752f5b24110d75f3df41[0m  
+./.git/objects/6f:
+6d2636470091219e525a952c2738e9e59c1691[0m  
+./.git/objects/70:
+a15cdc7f374684d18fbcdd0803db585a6fbb99[0m  
+./.git/objects/74:
+0da05ea5b006491bbaebaf6e3d99d0d3f3e81c[0m  67611a5ba18b3395a1b0413a2864efaae22d0d[0m  
+./.git/objects/75:
+5d00056580880c29e00883b1ebe759c7cd36d5[0m  
+./.git/objects/78:
+0a04b74e9324d43f683409a35a1626f824032a[0m  57b13506481fb3a14c1491968c5b947cf20074[0m  
+./.git/objects/7a:
+416164ae84e65c7998f50eedb2cf95c4fadbf4[0m  
+./.git/objects/85:
+40ed272240b5714fedf10869ef8e724628be26[0m  
+./.git/objects/8b:
+330524e282bfd6b81af8b4f76f40fb2f0bad99[0m  
+./.git/objects/8d:
+cd0054d4c5c4f9b15637ff5a5884bafe7e8dcb[0m  
+./.git/objects/90:
+2c48eace467769a28849fbade0314f8fe87bc2[0m  7bc5290aa8a25ca08e0fde6809f1c419a6bb66[0m  
+8dcc134edae0261559557d9b5a635e67c9f6f3[0m  
+./.git/objects/92:
+de39d6a436fb5a4c10659101b88b5a86dd81f9[0m  
+./.git/objects/99:
+ca1742a230cf1e5dc5029e2833280614497012[0m  
+./.git/objects/9c:
+9a9ba01d901584be8945e492e75a6e7f9843ec[0m  
+./.git/objects/a0:
+4e43d24ec0232180621c3f271238874e7513a5[0m  9f46a2982e6219fafd079297999a85a652e91d[0m  
+./.git/objects/a1:
+5db5123badb505932205005bf83e3593981d6d[0m  
+./.git/objects/a2:
+5a11df993ca62286c0f81ebf3b7e8636d6f2ec[0m  d97a392704ae88e3f8c8e1d0c06aa2aee78064[0m  
+./.git/objects/a4:
+6576114e45f4f01165518909e5e563f2a78158[0m  
+./.git/objects/a8:
+d3ddeed55441cdae9bc243334749525a3600b7[0m  
+./.git/objects/ac:
+f7aa693c81bc078d74a1b104cfbe8295124e0b[0m  
+./.git/objects/b0:
+ee28b9461382bba99ba9e2ba95f2c7cf9f723f[0m  
+./.git/objects/b1:
+0f3fbe2fb57a4d8d70fe31033021b25da6b5e9[0m  
+./.git/objects/b2:
+5f1f672bd3b99a7a96750085d8e4e4babb5e90[0m  
+./.git/objects/b3:
+4b35602bb56796e23e3f784aa6c3200b7c16a4[0m  
+./.git/objects/b4:
+f52773973d96bb0fb0bccc15b17a490c0cfacb[0m  
+./.git/objects/b8:
+8f94ea22969bf8f20df07f728879a4a1544e2c[0m  
+./.git/objects/bc:
+b53047145fd7d4d23c178f937d315a516d1818[0m  
+./.git/objects/bf:
+c708c49f16b152c52a18e76dfeb355cd2dc350[0m  
+./.git/objects/c0:
+1080991198b81c69a6ee392198f2d289aaca01[0m  
+./.git/objects/c2:
+641f880f79af9f8c14445446bce2803e4dd27d[0m  
+./.git/objects/c3:
+5de7bd09ee6969e91cdc676127d3ce28b15211[0m  
+./.git/objects/c4:
+3bf560338dfb9499731a7dae7f4471680ce6cb[0m  3eddd6968e1cac2f48ed206f6e96efb8a4d4fc[0m  
+./.git/objects/ca:
+7f0253e948cdeb8c2009efbad6aec0cef5a7a2[0m  
+./.git/objects/cb:
+56774506784a588bc0945702d66033cf45b0c1[0m  
+./.git/objects/cc:
+e6786c82715a8a368daea856639ba80e4158fe[0m  
+./.git/objects/ce:
+f3a1cb665ae1a51680ac6ccf548d31fab5d181[0m  
+./.git/objects/cf:
+d4c2c3014f61444853cbfa5d23bb0017738105[0m  
+./.git/objects/d0:
+a0ea375dcffb8c75e3b777785b3b920e31042b[0m  
+./.git/objects/d3:
+11e91c73812f255a5cc2d42d0e4052a5d69fd3[0m  
+./.git/objects/d9:
+3bd4dcc90fe6af73b87d095e4c07e1425cb2be[0m  
+./.git/objects/db:
+0e803ea01b0da2790df2723e2d4ccd9e7d0079[0m  
+./.git/objects/e0:
+c716744d2012e303de0663b39716d8cf00056b[0m  
+./.git/objects/e9:
+8832c3e431d0cc32ce430b8627eb60c2f0ada1[0m  de00b1b093814049d0a1cc485d383fcf5c4471[0m  
+./.git/objects/eb:
+21db74129bd913d6a0e149f0fb9b64a140fb7d[0m  
+./.git/objects/ec:
+ec300efb2e73e3fb4fd743d1bd4df6f9a85f18[0m  
+./.git/objects/f2:
+979b87d9255b470067766110df42df5dc0718c[0m  
+./.git/objects/f3:
+c87c4642153ef996995a4fbb2229656c3b6468[0m  
+./.git/objects/f4:
+62c581df4b71183bcaf48fa39046ddd317cbfa[0m  
+./.git/objects/f6:
+4968dc3da23eb76546d3afa2797537ef454363[0m  
+./.git/objects/f7:
+a55780c352cf9f6b28a561de82a18104cfd835[0m  
+./.git/objects/f8:
+673c2c3bd9807abbd3b853e0a98f2495f2c0ec[0m  dcdbcfe9f45c4cfde75f297475e22652692cab[0m  
+./.git/objects/f9:
+26de2d2a7302b504611cf5609348a733ccd423[0m  9e607f51fc8d470d2222d1fecede03442dd4b3[0m  
+./.git/objects/info:
+./.git/objects/pack:
+./.git/refs:
+[38;5;27mheads[0m   [38;5;27mremotes[0m [38;5;27mtags[0m    
+
+./.git/refs/heads:
+exec[0m    ls[0m      master[0m  
+./.git/refs/remotes:
+[38;5;27morigin[0m 
+
+./.git/refs/remotes/origin:
+exec[0m    HEAD[0m    master[0m  
+./.git/refs/tags:
+hw0[0m  
+./bin:
+[38;5;34mls[0m      [38;5;34mrshell[0m  
+./src:
+ls.cpp[0m      rshell.cpp[0m  
+./tests:
+exec.script[0m  ls.script[0m    
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/rshell
+getlogin: No such process
+@hannes-lx$ bin/ls #Executes in rshell
+[38;5;27mbin[0m       LICENSE[0m    Makefile[0m   README.md[0m  [38;5;27msrc[0m       [38;5;27mtests[0m     
+@hannes-lx$ ^[[A    bin/ls -al
+total: 36
+drwxrwxr-x 6 hannes-ub hannes-ub 4096 May  1 18:41 [47m[38;5;27m.[0m
+drwxr-xr-x 26 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m..[0m
+drwxrwxr-x 8 hannes-ub hannes-ub 4096 May  1 18:38 [47m[38;5;27m.git[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mbin[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 1076 Apr  6 11:49 LICENSE[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 455 May  1 17:29 Makefile[0m
+-rw-rw-r-- 1 hannes-ub hannes-ub 2228 May  1 18:37 README.md[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:38 [38;5;27msrc[0m
+drwxrwxr-x 2 hannes-ub hannes-ub 4096 May  1 18:41 [38;5;27mtests[0m
+@hannes-lx$ exit #exit rh shell
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ #[Kr[Kexit #exit script
+exit
+
+Script done on Fri 01 May 2015 06:46:41 PM PDT
