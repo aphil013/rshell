@@ -1,11 +1,11 @@
 Homework folder for open source course
 
-#rshell
+#Rshell
 Program based on bash terminal
 
 Similar usage and behavior
 
-#Running
+##Running
 ``$ git clone https://github.com/hannesphillips/rshell.git``
 
 ``$ cd rshell``
@@ -16,7 +16,7 @@ Similar usage and behavior
 
 ``$ bin/rshell``
 
-#Usage
+##Usage
 Uses getlogin() and gethostname() 
 ``<username>@<hostname>$``
 
@@ -38,7 +38,42 @@ ls for example can take -a or -aaaaa -a -a, -al or -l -a, etc.
 Terminal comments are given after a '#'. Anything written here is for
 the user(s) use only. The terminal will overlook anything entered after
 
-#Bugs
+
+#ls
+A seperately wriiten C++ program that fully implements the ls command.
+The program takes all types and forms of flags the BASH ls takes and can be ran within the existing rshell program in this repository
+
+##Usage
+
+`$ git clone https://github.com/hannesphillips/rshell.git`
+
+`$ cd rshell`
+
+`$ git checkout hw1`
+
+`$ make`
+
+`$ bin/ls`
+
+
+##Features
+`$ bin/ls` runs basic list and will print all files and directories in the current working directory
+
+`$ bin/ls -a` runs ls and displays hidden files and folders
+
+`$ bin/ls -l` runs in depth list that displays permissions of file/folder (read, write, and execute), the owner and group, and when the item was last edited
+
+`$ bin/ls -R` recursively displays contents of files and folders of folders in the working directory
+
+All of these flags can be combined or used simultaneously, i.e. -
+
+`$ bin/ls -a -l` or `$ bin/ls -Rl -a` etc.
+
+The program also handles multiple inputs of the same flag and will treat it as a single flag of that type
+
+Input of an incorrect flag will result in an error
+
+#Known Bugs
 The combination of connectors without commands causes the program to
 seg fault.
 
