@@ -79,11 +79,13 @@ Input of an incorrect flag will result in an error
 
 The command also takes directories as an input parameter to specify listing the contents of only the specified directory
 
-#Known Bugs
+#Known Bugs/Limitations
 The combination of connectors without commands causes the program to
 seg fault.
 
 Echo is currently unpredictable under my tests
 Change directory (cd) is not supported.
 
-ls -R currently displays -R -a
+ls -R currently behaves as -R -a
+
+The spacing of the program's output varies from BASH's ls
