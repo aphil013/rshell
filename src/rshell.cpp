@@ -4,20 +4,24 @@
 #include <stdio.h>
 #include <sys/wait.h>				// Wait
 #include <errno.h>				// perror()
+#include <sys/types.h>
+
 #include <string.h>				// strtok
 #include <cstring>				// strcpy()
+#include <ctype.h>
 #include <vector>
 
+using namespace std;
 
-void user_prompt(std::string& user)				// Gets user info for command prompt
+void user_prompt(string& user)				// Gets user info for command prompt
 {
 	char login[1024]; 
 	if(getlogin_r(login, sizeof(login)-1) != 0)
 		perror("getlogin"); 
-	std::string name = login;
+	string name = login;
 	if(gethostname(login, sizeof(login)-1) == -1)
 		perror("gethostname");
-	std::string host = login;
+	string host = login;
 	name += "@";
 	user = name + host;
 }
@@ -50,7 +54,7 @@ bool execute(char** commands)					// Executes and returns success value
 		int wait = waitpid(pid, &status, 0);
 		if(wait == -1)
 			perror("wait");
-		std::string cond = commands[0];
+		string cond = commands[0];
 		if(cond == "true") return true;
 		if(cond == "false") return false;
 		
@@ -58,16 +62,35 @@ bool execute(char** commands)					// Executes and returns success value
 	}
 	return true;
 }
+void replace(string &str, const string& curr, const string& hip)
+{
+	size_t pos = 0;
+	while((pos = str.find(curr, pos)) != string::npos)
+	{
+		str.replace(pos, curr.length(), hip);
+		pos += hip.length();
+	}
+	return;
+}
+void redirect_spacer(string &str)
+{
+	replace(str, "<", " < ");
+	replace(str, ">", " > ");
+	replace(str, ">>", " >> ");
+	replace(str, "|", " | ");
+	
+	return;
+}
 
 int main()				
 {
-	std::string user;
+	string user;
 	user_prompt(user);		// Gets login/host info
 
-	std::string cmd_line;
+	string cmd_line;
 	int array_sz = 0x8000;
 
-	while(std::cin.good())		// Continuous loop simulating terminal
+	while(cin.good())		// Continuous loop simulating terminal
 	{
 		bool prev = true;
 
@@ -75,13 +98,17 @@ int main()
 		bool re_out = false;
 		bool re_pipe = false;
 
-		std::cout << user << "$ ";				// Prompt and input 
-		getline(std::cin, cmd_line);
+		cout << user << "$ ";				// Prompt and input 
+		getline(cin, cmd_line);
 		int x = cmd_line.find("#", 0);
 		if(x >= 0) cmd_line = cmd_line.substr(0, x);		// Takes care of comments
-		
+
+		cout << cmd_line << endl;
+		redirect_spacer(cmd_line);
+		cout << cmd_line << endl;
+
 		x = 0;
-		for(std::string::iterator it = cmd_line.begin(); it < cmd_line.end(); ++it)	// Spaces between ';' for parsing
+		for(string::iterator it = cmd_line.begin(); it < cmd_line.end(); ++it)	// Spaces between ';' for parsing
 		{
 			int semi = cmd_line.find(";", x);
 			if(semi >= 0)
@@ -94,18 +121,18 @@ int main()
 				x = semi + 2;
 			}
 		}
-		
-		char*  cmd_str = new char [cmd_line.length()+1];				// Create array of c-strings
-		std::strcpy(cmd_str, cmd_line.c_str());
+	/*	
+		char*  cmd_str = new char [cmd_line.size()+1];				// Create array of c-strings
+		strcpy(cmd_str, cmd_line.c_str());
 		char** commands = new char*[array_sz];
 
 		
 
-		std::string key; // Connector storage
-		std::string logic; // Command storage
-		std::string io;
-		int i = 0;
-		char* cmd = std::strtok(cmd_str, " \t");			// Begin parsing
+		string key; // Connector storage
+		string logic; // Command storage
+		string io;
+		unsigned int i = 0;
+		char* cmd = strtok(cmd_str, " \t");			// Begin parsing
 
 		while(cmd != NULL)						// First command apart from connectors
 		{
@@ -115,7 +142,7 @@ int main()
 			else{		
 				commands[i] = cmd;
 				++i;
-				cmd = std::strtok(NULL, " \t");
+				cmd = strtok(NULL, " \t");
 			}
 		}
 		key = logic;
@@ -143,6 +170,7 @@ int main()
 					{
 
 					}
+				}
 					
 		}
 		for(unsigned int j = 0; j < sizeof(commands); ++j)		// For loops to "erase" executed command
@@ -150,7 +178,7 @@ int main()
 			commands[j] = '\0';
 		}
 
-		cmd = std::strtok(NULL, " \t");
+		cmd = strtok(NULL, " \t");
 		i = 0;		
 		while(cmd != NULL)						// Everything else w/ connector calculation
 		{
@@ -201,7 +229,7 @@ int main()
 				}
 				i = 0;
 			}
-			cmd = std::strtok(NULL, " \t");
+			cmd = strtok(NULL, " \t");
 	
 		}
 		if(i != 0)									// Execute last command, if any
@@ -213,5 +241,8 @@ int main()
 			if(key == ";") execute(commands);
 		}
 			
-	}	
+	}*/
+}
+	return 0;
+
 }
