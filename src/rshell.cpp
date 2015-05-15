@@ -71,6 +71,10 @@ int main()
 	{
 		bool prev = true;
 
+		bool re_in = false;
+		bool re_out = false;
+		bool re_pipe = false;
+
 		std::cout << user << "$ ";				// Prompt and input 
 		getline(std::cin, cmd_line);
 		int x = cmd_line.find("#", 0);
@@ -99,6 +103,7 @@ int main()
 
 		std::string key; // Connector storage
 		std::string logic; // Command storage
+		std::string io;
 		int i = 0;
 		char* cmd = std::strtok(cmd_str, " \t");			// Begin parsing
 
@@ -116,13 +121,29 @@ int main()
 		key = logic;
 		if(commands[0] != NULL)						// Executes first command
 		{
+
+			for(unsigned int k = 0; k < i; ++k)
+			{
+				io = commands[k];
+				if(io == "<") re_in = true;
+				else if(io == ">") re_out = true;
+				else if(io == "|") re_pipe = true;
+			}
 			logic = commands[0];
 			if(logic == "exit")
 				return 0;
 			if(logic == "")
 				prev = false;
 			else
-				prev = execute(commands);
+				if(!re_in && !re_out && !re_pipe)
+					prev = execute(commands);
+				else
+				{
+					if(re_in && !re_out && !re_pipe)
+					{
+
+					}
+					
 		}
 		for(unsigned int j = 0; j < sizeof(commands); ++j)		// For loops to "erase" executed command
 		{
@@ -162,7 +183,7 @@ int main()
 				key = logic;
 				logic = commands[0];
 				if(logic == "exit")
-				{	std::cout << "EXIT\n";	return 0;}
+					return 0;
 				if(prev) prev = execute(commands);
 				for(unsigned int j = 0; j < sizeof(commands); ++j)
 				{
