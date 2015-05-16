@@ -1,0 +1,63 @@
+Script started on Fri 15 May 2015 06:13:05 PM PDT
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ make
+mkdir -p ./bin
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/rshell.cpp -o ./bin/rshell
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/ls.cpp -o ./bin/ls
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/rshell 
+getlogin: No such process
+A@hannes-lx$ ls    rm o	ut OUT files #Cleaning from last test
+A@hannes-lx$ ls   #Basic command
+bin  in  LICENSE  Makefile  README.md  src  tests
+A@hannes-lx$ ls > files  #Output redirection
+A@hannes-lx$ ls  
+bin  files  in	LICENSE  Makefile  README.md  src  tests
+A@hannes-lx$ cat files  #Testing proper output
+bin
+files
+in
+LICENSE
+Makefile
+README.md
+src
+tests
+A@hannes-lx$ cat < files #IN  Inut    put redirection is same when command needs inpt ut
+bin
+files
+in
+LICENSE
+Makefile
+README.md
+src
+tests
+A@hannes-lx$ rm in
+A@hannes-lx$ echo rd ed blue green > colors
+A@hannes-lx$ cat colors
+red blue green
+A@hannes-lx$ echo yello  w >  > colors #Appending
+A@hannes-lx$ cat colors
+red blue green
+yellow
+A@hannes-lx$ cat < colors | tr  a    A-Z a-z | tee out | tr a-z A_ -Z | > OUT
+A@hannes-lx$ #Test case from              Chaing  ning multiple redirections and pipes
+A@hannes-lx$ cat out
+red blue green
+yellow
+A@hannes-lx$ cat OUT
+RED BLUE GREEN
+YELLOW
+A@hannes-lx$ #test case from specs successful
+A@hannes-lx$ wc -l <   src/rshell.cpp > linecount.txt
+A@hannes-lx$ #Using input and outpu  t redirection together
+A@hannes-lx$ cat linecount.txt
+316
+A@hannes-lx$ colors | sort
+execvp: No such file or directory
+A@hannes-lx$ cat colors |            ps -ax | grep Finder  #Pin ping case
+A@hannes-lx$ #Nothing found
+A@hannes-lx$ ps aux | wc -l  #Pin ping, counts number of processes + 1
+214
+A@hannes-lx$ exit #End testing
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ exit
+exit
+
+Script done on Fri 15 May 2015 06:24:06 PM PDT
