@@ -99,14 +99,14 @@ The new features are available under the tag, hw2.
 
 To use input redirection, the `<` character must be directed after the command to send the input to the program, e.g.
 
-	-`ls -a < (file name)`: This would be useful in examining the total contents of a directory stored in a file. The folder(s) in the file would be passed to ls -a, and only the directories there would be looked at, refining the information presented
+`ls -a < (file name)`: This would be useful in examining the total contents of a directory stored in a file. The folder(s) in the file would be passed to ls -a, and only the directories there would be looked at, refining the information presented
 
 Output redirection uses, `>` and `>>` to determine how the output is used. 
 The single character overwrties an existing file or creates and new one and places the outpt there. The double character appends, or adds to the end, of an existing file or will create one if it isn't present
 
-	- `ps > out.txt`: Here the output of the ps command would be stored in the out.txt file
+`ps > out.txt`: Here the output of the ps command would be stored in the out.txt file
 	
-	- `pwd >> directory_list` : The output of pwd would be appended to the direcotry list file where the areas of work can be stored for later reference
+`pwd >> directory_list` : The output of pwd would be appended to the direcotry list file where the areas of work can be stored for later reference
 
 
 #Known Bugs/Limitations
