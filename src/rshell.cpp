@@ -189,9 +189,7 @@ int main()
 		int x = cmd_line.find("#", 0);
 		if(x >= 0) cmd_line = cmd_line.substr(0, x);		// Takes care of comments
 
-		cout << cmd_line << endl;
 		redirect_spacer(cmd_line);
-		cout << cmd_line << endl;
 
 		x = 0;
 		for(string::iterator it = cmd_line.begin(); it < cmd_line.end(); ++it)	// Spaces between ';' for parsing
