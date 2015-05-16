@@ -5,6 +5,7 @@
 #include <sys/wait.h>				// Wait
 #include <errno.h>				// perror()
 #include <sys/types.h>
+#include <fcntl.h>
 
 #include <string.h>				// strtok
 #include <cstring>				// strcpy()
@@ -39,6 +40,44 @@ vector<string> tok(char x[], string key)		// Redone nicer tokens
 	return z;
 }
 
+void redirection(char** cmd)
+{
+	for(unsigned int i = 0; cmd[i] != '\0'; ++i)
+	{
+		int ps = 0;
+		if(!strcmp(cmd[i], "<"))
+		{
+			cmd[i] = 0;
+			if((ps = open(cmd[i+1], O_RDONLY)) == -1)
+				perror("open");
+			if((dup2(ps, 0)) == -1)
+				perror("dup2");
+		}
+		else if(!strcmp(cmd[i], ">"))
+		{
+			if(!strcmp(cmd[i+1], ">"))
+			{
+				cmd[i] = 0;
+				cmd[i+1] = 0;
+				if((ps = open(cmd[i+2], O_CREAT | O_WRONLY | O_APPEND, 0666)) == -1)
+					perror("open");
+				if((dup2(ps, 1)) == -1)
+					perror("dup2");
+				++i;
+			}
+			else
+			{
+				cmd[i] = 0;
+				if((ps = open(cmd[i+1], O_CREAT | O_WRONLY | O_TRUNC, 0666)) == -1)
+					perror("open");
+				if((dup2(ps, 1)) == -1)
+					perror("dup2");
+			}
+		}
+	}
+	return;
+}
+
 void execute(vector<string> commands)
 {
 	unsigned int size = commands.size();
@@ -50,6 +89,7 @@ void execute(vector<string> commands)
 		strcpy(arg[i], commands.at(i).c_str());
 	}
 
+	redirection(arg);
 	if(execvp(arg[0], arg) == -1)
 	{
 		delete[] arg;
