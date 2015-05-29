@@ -85,6 +85,9 @@ void redirection(char** cmd)
 
 void execute(vector<string> commands)
 {
+	char* path = getenv("PATH");		// Preperation for cd
+	vector<string> path_var = tok(path, ":");
+
 	unsigned int size = commands.size();
 	char** arg = new char*[size+1];
 	arg[size] = '\0';
@@ -95,13 +98,34 @@ void execute(vector<string> commands)
 	}
 
 	redirection(arg);
-	if(execvp(arg[0], arg) == -1)
+	
+	for(unsigned int i = 0; i < path_var.size(); ++i)
 	{
-		delete[] arg;
-		perror("execvp");
+		char hold[BUFSIZ];
+		strcpy(hold, const_cast<char*>(path_var.at(i).c_str()));
+		strcat(hold, "/");
+		strcat(hold, const_cast<char*>(commands.at(0).c_str()));
+
+		char* pirate[BUFSIZ]; // pirate -> arrrrrg
+		pirate[0] = hold;
+
+		for(unsigned int j = 1; j < commands.size(); ++j)
+		{
+			pirate[j] = const_cast<char*>(commands.at(j).c_str());
+		}
+
+		if(execv(pirate[0], pirate) == -1);
+		else
+			return;
+	}
+	
+	if(errno && commands.at(0) != "cd")
+	{
+		perror("execv");
 		exit(1);
 	}
-	return;
+	else if(commands.at(0) == "cd")
+		exit(1);
 }
 
 void execution(vector<string> commands)
