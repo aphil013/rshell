@@ -27,6 +27,11 @@ void user_prompt(string& user)				// Gets user info for command prompt
 	user = name + host;
 }
 
+void ctrl_c(int x)
+{
+	signal(SIGINT, SIG_IGN);
+}
+
 vector<string> tok(char x[], string key)		// Redone nicer tokens
 {
 	const char* str = key.c_str(); // Error without const
@@ -181,8 +186,13 @@ int main()
 	while(cin.good())		// Continuous loop simulating terminal
 	{
 		begin:								// Label to jump to
-		//bool prev = true;
 
+		signal(SIGINT, ctrl_c);
+
+		char buffer[BUFSIZ];
+		if(!getcwd(buffer, sizeof(buffer)))
+			perror("getcwd");
+		cout << buffer << endl;
 
 		cout << user << "$ ";				// Prompt and input 
 		getline(cin, cmd_line);
@@ -239,6 +249,22 @@ int main()
 				delete[] cmd_str;
 				return 0;
 			}
+			if(commands.at(0) == "cd")
+			{
+				if(commands.size() == 1)
+				{
+					if(chdir(getenv("HOME")) == -1)		// Error check
+						perror("chdir");
+				}
+				else
+				{
+					if(chdir(const_cast<char*>(commands.at(1).c_str())) == -1)	
+					// Have to change type for chdir's parameters
+					// Error check at the same time
+						perror("chdir");
+				}
+			}
+
 			int pid = fork();
 			if(pid == -1)
 			{
@@ -277,35 +303,53 @@ int main()
 				delete[] cmd_str;
 				return 0;
 			}
-			int pid = fork();
-			if(pid == -1)
+
+			if(super.at(i).at(0) == "cd")
 			{
-				perror("fork");
-				exit(1);
-			}
-			else if(pid == 0)
-				execution(commands);
-			else
-			{
-				if(waitpid(-1, &stat, 0) == -1)
+				if(super.at(i).size() == 1)
 				{
-					perror("waitpid");
-					exit(1);
+					if(chdir(getenv("HOME")) == -1)
+						perror("chdir");		// Same change dir error check
 				}
 				else
 				{
-					if(key == "")
-						break;
-					else if(key == ";");
-					else if(key == "||")
+					//Identical call
+					if(chdir(const_cast<char*>(super.at(i).at(1).c_str())) == -1)
+						perror("chdir");
+				}
+			}
+			else
+			{
+				int pid = fork();
+				if(pid == -1)
+				{
+					perror("fork");
+					exit(1);
+				}
+				else if(pid == 0)
+					execution(commands);
+				else
+				{
+					if(waitpid(-1, &stat, 0) == -1)
 					{
-						if(stat <= 0)
-							break;
+						perror("waitpid");
+						exit(1);
 					}
-					else if(key == "&&")
+					else
 					{
-						if(stat > 0)
+						if(key == "")
 							break;
+						else if(key == ";");
+						else if(key == "||")
+						{
+							if(stat <= 0)
+								break;
+						}
+						else if(key == "&&")
+						{
+							if(stat > 0)
+								break;
+						}
 					}
 				}
 			}
