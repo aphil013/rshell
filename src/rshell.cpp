@@ -15,6 +15,10 @@
 
 using namespace std;
 
+string prompt;
+int pid = 1;
+bool isChild = false;
+
 void user_prompt(string& user)				// Gets user info for command prompt
 {
 	char login[1024]; 
@@ -28,10 +32,13 @@ void user_prompt(string& user)				// Gets user info for command prompt
 	user = name + host;
 }
 
-void ctrl_c(int x)
+void CTRLC(int i)
 {
-	return;
+	if(isChild)
+		kill(pid, SIGKILL);
+	cout << endl; 
 }
+
 
 vector<string> tok(char x[], string key)		// Redone nicer tokens
 {
@@ -115,14 +122,14 @@ void execute(vector<string> commands)
 			pirate[j] = const_cast<char*>(commands.at(j).c_str());
 		}
 
-		if(execv(pirate[0], pirate) == -1);
+		if(execvp(pirate[0], pirate) == -1);
 		else
 			return;
 	}
 	
 	if(errno && commands.at(0) != "cd")
 	{
-		perror("execv");
+		perror("execvp");
 		exit(1);
 	}
 	else if(commands.at(0) == "cd")
@@ -147,7 +154,7 @@ void execution(vector<string> commands)
 		int ps[2];
 		if(pipe(ps) == -1)		// Pipe sys call
 			perror("pipe");  
-		int pid = fork();
+		pid = fork();
 		if(pid == -1)
 		{
 			perror("fork");
@@ -205,21 +212,21 @@ int main()
 {
 	string user;
 	user_prompt(user);		// Gets login/host info
-
+	prompt = user;
 	string cmd_line;
 
 	while(cin.good())		// Continuous loop simulating terminal
 	{
 		begin:								// Label to jump to
 
-		signal(SIGINT, ctrl_c);
+		signal(SIGINT, CTRLC);
 
-		char buffer[BUFSIZ];
-		if(!getcwd(buffer, sizeof(buffer)))
+		char cwd[BUFSIZ];
+		if(!getcwd(cwd, sizeof(cwd)))
 			perror("getcwd");
-		cout << buffer << endl;
+		cout << cwd << endl;
 
-		cout << user << "$ ";				// Prompt and input 
+		cout << prompt << "$ ";				// Prompt and input 
 		getline(cin, cmd_line);
 		int x = cmd_line.find("#", 0);
 		if(x >= 0) cmd_line = cmd_line.substr(0, x);		// Takes care of comments
@@ -290,7 +297,7 @@ int main()
 				}
 			}
 
-			int pid = fork();
+			pid = fork();
 			if(pid == -1)
 			{
 				perror("fork");
@@ -345,7 +352,7 @@ int main()
 			}
 			else
 			{
-				int pid = fork();
+				pid = fork();
 				if(pid == -1)
 				{
 					perror("fork");
