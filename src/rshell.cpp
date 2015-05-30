@@ -6,6 +6,7 @@
 #include <errno.h>				// perror()
 #include <sys/types.h>
 #include <fcntl.h>
+#include <signal.h>
 
 #include <string.h>				// strtok
 #include <cstring>				// strcpy()
@@ -29,7 +30,7 @@ void user_prompt(string& user)				// Gets user info for command prompt
 
 void ctrl_c(int x)
 {
-	signal(SIGINT, SIG_IGN);
+	return;
 }
 
 vector<string> tok(char x[], string key)		// Redone nicer tokens
