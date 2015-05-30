@@ -108,6 +108,26 @@ The single character overwrties an existing file or creates and new one and plac
 	
 `pwd >> directory_list` : The output of pwd would be appended to the direcotry list file where the areas of work can be stored for later reference
 
+#CD and ^C
+Rshell now supports the use of the cd command and handles cntrl c differently
+
+##Usage
+`$ git clone https://github.com/hannesphillips/rshell.git`
+
+`$ cd rshell`
+
+`$ git checkout hw3`
+
+`$ make`
+
+`$ bin/rshell`
+
+##Features
+`cd` changes the current working directory to the home directory
+
+`cd <PATH NAME>` changes the current working directory to PATH NAME specified
+
+`^C` input no longer kills the shell but the foreground process
 
 #Known Bugs/Limitations
 Connectors as of now, do not work with redirection
@@ -119,3 +139,7 @@ Change directory (cd) is not supported.
 ls -R currently behaves as -R -a
 
 The spacing of the program's output varies from BASH's ls
+
+cd - is not supported
+
+
