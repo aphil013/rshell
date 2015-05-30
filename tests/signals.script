@@ -1,0 +1,50 @@
+Script started on Fri 29 May 2015 10:46:07 PM PDT
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ make
+mkdir -p ./bin
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/rshell.cpp -o ./bin/rshell
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/ls.cpp -o ./bin/ls
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/rshell
+getlogin: No such process
+/home/hannes-ub/rshell
+@hannes-lx$ ls
+bin  LICENSE  Makefile	README.md  signals.script  src	tests
+/home/hannes-ub/rshell
+@hannes-lx$ cd src/  #Basi    cd <path_name>
+/home/hannes-ub/rshell/src
+@hannes-lx$ cd ..    #changing backwards
+/home/hannes-ub/rshell
+@hannes-lx$ # ^ disl plays current working directory
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  vector::_M_range_check
+Aborted (core dumped)
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ bin/rshell  #Error thrown for no command
+getlogin: No such process
+/home/hannes-ub/rshell
+@hannes-lx$ cd #  #Changing to home directory
+/home/hannes-ub
+@hannes-lx$ ls
+a.out	cs100	   Downloads	     Music     Pictures  sig.cpp
+cheat	Desktop    examples.desktop  new.cpp   Public	 Templates
+config	Documents  l.cpp	     packages  rshell	 Videos
+/home/hannes-ub
+@hannes-lx$ cd rshekk/     hell/
+/home/hannes-ub/rshell
+@hannes-lx$ ls
+bin  LICENSE  Makefile	README.md  signals.script  src	tests
+/home/hannes-ub/rshell
+@hannes-lx$ ^C
+pwd
+/home/hannes-ub/rshell
+/home/hannes-ub/rshell
+@hannes-lx$ ^C
+# ps # control c doesn  not kill shell
+  PID TTY          TIME CMD
+ 8745 pts/23   00:00:00 bash
+ 8777 pts/23   00:00:00 rshell
+ 8783 pts/23   00:00:00 ps
+/home/hannes-ub/rshell
+@hannes-lx$ #Endn    d t      exit #end tests
+]0;hannes-ub@hannes-lx: ~/rshellhannes-ub@hannes-lx:~/rshell$ exit
+exit
+
+Script done on Fri 29 May 2015 10:54:10 PM PDT
