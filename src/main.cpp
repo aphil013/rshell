@@ -59,12 +59,13 @@ bool execute(vector<string> v)
 		return false;
 	}
 
-	if(arg[0] == "true")
+	string cmd = arg[0];
+	if(cmd == "true")
 	{
 		delete[] arg;
 		return true;
 	}
-	else if(arg[0] == "false")
+	else if(cmd == "false")
 	{
 		delete[] arg;
 		return false;
@@ -151,7 +152,6 @@ int main()
 
 		if(key == "")
 		{
-			int stat = 0;
 			commands = tok(cmd_str, " ");
 
 			if(commands.at(0) == "exit")
@@ -177,7 +177,7 @@ int main()
 			vector<string> empty;
 
 			int sz = 0;
-			int k;
+			unsigned int k;
 			for(unsigned int i = 0; i < commands.size(); ++i)
 			{
 				k = i + 1;
@@ -229,12 +229,12 @@ int main()
 				else if(super.at(i).at(0) == "||")
 				{
 					if(!bridge)
-						bridge == execute(super.at(i+1));
+						bridge = execute(super.at(i+1));
 				}
 				else if(super.at(i).at(0) == "&&")
 				{
 					if(bridge)
-						bridge == execute(super.at(i+1));
+						bridge = execute(super.at(i+1));
 				}
 
 			}
