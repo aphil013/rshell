@@ -2,13 +2,18 @@ Homework folder for open source course
 
 #rshell
 Program based on bash terminal
+
 Similar usage and behavior
 
 #Running
 ``$ git clone https://github.com/hannesphillips/rshell.git``
+
 ``$ cd rshell``
+
 ``$ git checkout hw0``
+
 ``$ make``
+
 ``$ bin/rshell``
 
 #Usage
