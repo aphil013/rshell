@@ -122,6 +122,9 @@ int main()
 		if(x >= 0)
 			cmd_line = cmd_line.substr(0, x);
 
+		if(cmd_line.length() == 0)
+			goto begin;
+
 		x = 0;
 		string::iterator it;
 		for(it = cmd_line.begin(); it < cmd_line.end(); ++it)
