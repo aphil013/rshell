@@ -33,6 +33,8 @@ Terminal comments are given after a '#'. Anything written here is for
 the user(s) use only. The terminal will overlook anything entered after
 
 #Bugs
-The combination of connectors without commands causes the program to
-seg fault.
-Echo and change directory (cd) are not supported.
+The sequence `$ || &&` causes the shell to output a non-fatal error
+
+More than 3 connectors with no command causes a logical error
+
+Change directory (cd) is not currently supported
