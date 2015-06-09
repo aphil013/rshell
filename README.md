@@ -13,11 +13,15 @@ Similar usage and behavior
 
 #Usage
 Uses getlogin() and gethostname() 
+
 ``<username>@<hostname>$``
+
 Commands can then be input, eg.:
 
 ``$ ls``
+
 ``$ ls -a || exit``
+
 ``$ pwd && ls -l <directory> || mkdir <directory>``
 
 The command to quit a session is exit
