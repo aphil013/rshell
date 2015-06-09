@@ -1,0 +1,131 @@
+Script started on Tue 09 Jun 2015 05:27:09 AM PDT
+~
+aphil013@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * checksyscalls.sh      is your cpp file doing proper error checking?     |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32maphil013[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell
+[s%%%%%%%%%%[u[0;32maphil013[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (exec) [0;36m$[0m make
+mkdir -p ./bin
+g++ -Wall -Werror -pedantic -ansi --std=c++11 ./src/main.cpp -o ./bin/rshell
+[s%%%%%%%%%%[u[0;32maphil013[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (exec) [0;36m$[0m bin/rshell #Sta[Karting rshell
+aphil013@hammer.cs.ucr.edu$ ls #Basic commands
+bin  LICENSE  Makefile	README.md  src	tests
+aphil013@hammer.cs.ucr.edu$ pwd
+/home/csmajs/aphil013/cs100/rshell
+aphil013@hammer.cs.ucr.edu$ ps
+  PID TTY          TIME CMD
+18080 pts/30   00:00:00 bash
+18106 pts/30   00:00:00 rshell
+18111 pts/30   00:00:00 ps
+aphil013@hammer.cs.ucr.edu$ mkdir showcase
+aphil013@hammer.cs.ucr.edu$ touch showcase/trophy #Creation
+aphil013@hammer.cs.ucr.edu$ ls
+bin  LICENSE  Makefile	README.md  showcase  src  tests
+aphil013@hammer.cs.ucr.edu$ ls showcase #arg guments
+trophy
+aphil013@hammer.cs.ucr.edu$ rm 0rf     -rf showcase  #Flags
+aphil013@hammer.cs.ucr.edu$ bin/rshell  #Launch rshell from rshell
+aphil013@hammer.cs.ucr.edu$ e ps
+  PID TTY          TIME CMD
+18080 pts/30   00:00:00 bash
+18106 pts/30   00:00:00 rshell
+18138 pts/30   00:00:00 rshell
+18139 pts/30   00:00:00 ps
+aphil013@hammer.cs.ucr.edu$ exit #Standard exit commands 
+aphil013@hammer.cs.ucr.edu$ ls #ls variations
+bin  LICENSE  Makefile	README.md  src	tests
+aphil013@hammer.cs.ucr.edu$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README.md	src  tests
+aphil013@hammer.cs.ucr.edu$  ls   ls -l
+total 24
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 bin
+-rw------- 1 aphil013 csmajs 1076 May 29 15:01 LICENSE
+-rw------- 1 aphil013 csmajs  281 Jun  9 04:37 Makefile
+-rw------- 1 aphil013 csmajs 1143 Jun  9 04:37 README.md
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:10 src
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 tests
+aphil013@hammer.cs.ucr.edu$ ls -al #Combination
+total 36
+drwx------ 6 aphil013 csmajs 4096 Jun  9 05:21 .
+drwx------ 4 aphil013 csmajs 4096 May 29 15:01 ..
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 bin
+drwx------ 8 aphil013 csmajs 4096 Jun  9 05:10 .git
+-rw------- 1 aphil013 csmajs 1076 May 29 15:01 LICENSE
+-rw------- 1 aphil013 csmajs  281 Jun  9 04:37 Makefile
+-rw------- 1 aphil013 csmajs 1143 Jun  9 04:37 README.md
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:10 src
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 tests
+aphil013@hammer.cs.ucr.edu$ ls -a -l #Eqi uivalenve  ce
+total 36
+drwx------ 6 aphil013 csmajs 4096 Jun  9 05:21 .
+drwx------ 4 aphil013 csmajs 4096 May 29 15:01 ..
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 bin
+drwx------ 8 aphil013 csmajs 4096 Jun  9 05:10 .git
+-rw------- 1 aphil013 csmajs 1076 May 29 15:01 LICENSE
+-rw------- 1 aphil013 csmajs  281 Jun  9 04:37 Makefile
+-rw------- 1 aphil013 csmajs 1143 Jun  9 04:37 README.md
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:10 src
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 tests
+aphil013@hammer.cs.ucr.edu$ ls -aaaaaaaaaaaaaaaallllllllllllalalllllllllla #Inde           #Indifferent to repition  tion
+total 36
+drwx------ 6 aphil013 csmajs 4096 Jun  9 05:21 .
+drwx------ 4 aphil013 csmajs 4096 May 29 15:01 ..
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 bin
+drwx------ 8 aphil013 csmajs 4096 Jun  9 05:10 .git
+-rw------- 1 aphil013 csmajs 1076 May 29 15:01 LICENSE
+-rw------- 1 aphil013 csmajs  281 Jun  9 04:37 Makefile
+-rw------- 1 aphil013 csmajs 1143 Jun  9 04:37 README.md
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:10 src
+drwx------ 2 aphil013 csmajs 4096 Jun  9 05:20 tests
+aphil013@hammer.cs.ucr.edu$ pwd && ls #Connectors
+/home/csmajs/aphil013/cs100/rshell
+bin  LICENSE  Makefile	README.md  src	tests
+aphil013@hammer.cs.ucr.edu$ ps || exit #Or
+  PID TTY          TIME CMD
+18080 pts/30   00:00:00 bash
+18106 pts/30   00:00:00 rshell
+18274 pts/30   00:00:00 ps
+aphil013@hammer.cs.ucr.edu$ true && ls #  
+bin  LICENSE  Makefile	README.md  src	tests
+aphil013@hammer.cs.ucr.edu$ d faal  lse || ls #Conditionals
+bin  LICENSE  Makefile	README.md  src	tests
+aphil013@hammer.cs.ucr.edu$ false && true &&    
+aphil013@hammer.cs.ucr.edu$ true || false && fl alse && ls  #Handled like bash
+aphil013@hammer.cs.ucr.edu$ && ps #Empty expression, non f   fatal output for &&
+aphil013@hammer.cs.ucr.edu$ && ls #Correction
+aphil013@hammer.cs.ucr.edu$ || ps #Treated as false
+  PID TTY          TIME CMD
+18080 pts/30   00:00:00 bash
+18106 pts/30   00:00:00 rshell
+18401 pts/30   00:00:00 ps
+aphil013@hammer.cs.ucr.edu$ && #Lone connectore giv      gives message
+rshell: unexpected syntax near token '&&'
+aphil013@hammer.cs.ucr.edu$ && || #Two connectors
+aphil013@hammer.cs.ucr.edu$ || &&
+execvp: No such file or directory
+aphil013@hammer.cs.ucr.edu$ exit #End testing
+[s%%%%%%%%%%[u[0;32maphil013[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (exec) [0;36m$[0m exit
+exit
+~
+aphil013@hammer $ exit
+exit
+
+Script done on Tue 09 Jun 2015 05:34:13 AM PDT
