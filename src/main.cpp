@@ -205,36 +205,41 @@ int main()
 				v.insert(v.end(), super.begin(), super.end());
 				super = v;
 			}
-			if(super.at(0).size() == 0);
-			else if(super.at(0).at(0) == "exit")
-			{
-				delete[] cmd_str;
-				return 0;
-			}
-			else;
 			bridge = execute(super.at(0));
 			for(unsigned int i = 1; i < super.size(); i = i+2)
 			{
-				if(super.at(i+1).at(0) == "exit")
-				{
-					delete[] cmd_str;
-					return 0;
-				}
-
-				
 				if(super.at(i).at(0) == ";")
 				{
+					if(super.at(i+1).at(0) == "exit")
+					{
+						delete[] cmd_str;
+						return 0;
+					}
 					bridge = execute(super.at(i+1));
 				}
 				else if(super.at(i).at(0) == "||")
 				{
-					if(!bridge)
+					if(bridge == false)
+					{
+						if(super.at(i+1).at(0) == "exit")
+						{
+							delete[] cmd_str;
+							return 0;
+						}
 						bridge = execute(super.at(i+1));
+					}
 				}
 				else if(super.at(i).at(0) == "&&")
 				{
 					if(bridge)
+					{
+						if(super.at(i+1).at(0) == "exit")
+						{
+							delete[] cmd_str;
+							return 0;
+						}
 						bridge = execute(super.at(i+1));
+					}
 				}
 
 			}
